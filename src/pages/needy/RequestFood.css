@@ -1,0 +1,120 @@
+
+.needy-container {
+  max-width: 500px;
+  margin:10px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+.needy-banner {
+  Position: relative;
+  Text-align: center;
+}
+.needy-banner img {
+  width: 100%;
+  height: 200px;
+  Object-fit: cover;
+}
+.needy-banner h2 {
+  Position: absolute;
+  bottom: 5px;
+  Width: 100%;
+  Color: #f8e807;
+  Font-weight: bold;
+  Letter-spacing: 1px;
+}
+
+.needy-form {
+  background: #ffffff;
+  padding: 18px;
+  height: auto;
+  max-width: 500px;
+  width:600px;
+  border-radius: 12px;
+  Box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+.needy-form label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  display: block;
+}
+.needy-form input,
+.needy-form select,
+.needy-form textarea {
+  Width: 100%;
+  Padding: 11px 12px;
+  Margin-bottom: 14px;
+  Border-radius: 8px;
+  Border: 1px solid #cfd6e0;
+  Font-size: 14px;
+  background: #fcfbfb;
+  Color: #1f2937; 
+}
+
+
+.needy-form input::placeholder,
+.needy-form textarea::placeholder {
+  Color: #525252;
+}
+.needy-form input:focus,
+.needy-form select:focus,
+.needy-form textarea:focus {
+  color:black;
+  Outline: none;
+  Border-color: #2b7cff;
+  Box-shadow: 0 0 0 2px rgba(43, 124, 255, 0.15);
+}
+
+
+.row {
+  Display: flex;
+  Gap: 12px;
+}
+
+
+.needy-form button {
+  Width: 100%;
+  Padding: 12px;
+  Background: #2b7cff;
+  Color: #ffffff;
+  Border: none;
+  Border-radius: 8px;
+  Font-size: 15px;
+  Font-weight: 600;
+  Cursor: pointer;
+}
+
+.needy-form button:hover {
+  Background: #1f63d8;
+}
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap:15px;
+  padding: 15px;
+  background: #f5f5f5;
+}
+.tabs button {
+  padding:120 20pxpx;
+  border:none;
+  background: #f70505;
+  cursor:pointer;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: 0.3 ease;
+}
+.tabs button:hover {
+  transform: translateY(-2px);
+}
+.tabs button.active {
+  background:#007bff;
+  color:white;
+}
+.content {
+  padding: 20px;
+}

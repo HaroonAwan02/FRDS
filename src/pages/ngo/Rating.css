@@ -1,0 +1,132 @@
+*	{
+  Box-sizing: border-box;
+  Font-family: “Segoe UI”, sans-serif;
+}
+
+.rate-container {
+  min-height: 100vh;
+  Background: #f1f5f9;
+  Display: flex;
+  Justify-content: center;
+  Align-items: center;
+}
+
+.rate-card {
+  Background: white;
+  width: 420px;
+  min-height: 520px;
+  padding: 36px;
+  Border-radius: 16px;
+  Box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.rate-card h2 {
+  Text-align: center;
+  Margin-bottom: 20px;
+  Color: #1f2937;
+}
+
+Label {
+  Font-weight: 600;
+  Font-size: 14px;
+  Margin-top: 20px;
+  Display: block;
+  Color: #334155;
+}
+
+/* INPUT FIX (IMPORTANT) */
+Input,
+Textarea {
+  Width: 100%;
+  Padding: 12px;
+  Margin-top: 6px;
+  Border-radius: 10px;
+  Border: 1px solid #cbd5e1;
+  Background: #ffffff;
+  Color: #1f2937;
+  Outline: none;
+}
+
+Input:focus,
+Textarea:focus {
+  Border-color: #2563eb;
+  Box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+}
+
+Textarea {
+  Min-height:120px;
+  Resize: none;
+}
+
+/* Searchable Dropdown */
+.dropdown {
+  Position: relative;
+}
+
+.dropdown-list {
+  Position: absolute;
+  Width: 100%;
+  Background: white;
+  Border-radius: 10px;
+  Margin-top: 6px;
+  Box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  Max-height: 180px;
+  Overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdown-list li {
+  Padding: 10px 12px;
+  Cursor: pointer;
+}
+
+.dropdown-list li:hover {
+  Background: #f1f5f9;
+}
+
+.dropdown-list .empty {
+  Text-align: center;
+  Color: #94a3b8;
+}
+
+/* Stars */
+.stars {
+  Margin-top: 8px;
+}
+
+.star {
+  Font-size: 28px;
+  Color: #cbd5e1;
+  Cursor: pointer;
+  Transition: 0.2s;
+}
+
+.star.filled {
+  Color: #facc15;
+}
+
+.rating-btn {
+  Width: 100%;
+  Margin-top: 20px;
+  Padding: 14px;
+  Border-radius: 12px;
+  Border: none;
+  Background: linear-gradient(135deg, #2563eb, #3b82f6);
+  Color: white;
+  Font-size: 16px;
+  Font-weight: 600;
+  Cursor: pointer;
+}
+
+.rating-btn:disabled {
+  Opacity: 0.5;
+  Cursor: not-allowed;
+}
+
+.note {
+  Margin-top: 12px;
+  Font-size: 12px;
+  Text-align: center;
+  Color: #64748b;
+}
+

@@ -1,0 +1,119 @@
+.vd-page {
+  Padding: 32px;
+  Background: #eeeeee;
+  Min-height: 100vh;
+}
+
+.vd-title {
+  Font-size: 26px;
+  Font-weight: 700;
+  Margin-bottom: 24px;
+  Color: #f3f6fa;
+  background: #374151;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+/* GRID */
+.vd-grid {
+  Display: grid;
+  Grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  Gap: 24px;
+}
+
+/* CARD */
+.vd-card {
+  Background: #ffffff;
+  Border-radius: 18px;
+  Padding: 20px;
+  box-shadow: 0 12px 30px rgba(65, 64, 64, 0.06);
+  Transition: transform 0.2s ease;
+}
+
+.vd-card:hover {
+  Transform: translateY(-4px);
+}
+
+/* HEADER */
+.vd-card-header {
+  Display: flex;
+  Justify-content: space-between;
+  Align-items: center;
+  Margin-bottom: 14px;
+}
+
+.vd-card-header h3 {
+  Font-size: 18px;
+  Font-weight: 600;
+  Color: #111827;
+}
+
+/* STATUS */
+.vd-status {
+  Padding: 6px 14px;
+  Font-size: 12px;
+  Font-weight: 600;
+  Border-radius: 999px;
+  Text-transform: uppercase;
+}
+
+.vd-status.pending {
+  Background: #fde68a;
+  Color: #92400e;
+}
+
+.vd-status.accepted {
+  Background: #bbf7d0;
+  Color: #166534;
+}
+
+.vd-status.completed {
+  Background: #bfdbfe;
+  Color: #1e40af;
+}
+
+/* BODY */
+.vd-card-body {
+  Display: grid;
+  Grid-template-columns: 1.2fr 1fr;
+  Gap: 16px;
+}
+
+.vd-info p {
+  Font-size: 14px;
+  Color: #374151;
+  Margin-bottom: 6px;
+}
+
+/* MAP */
+.vd-map {
+  Height: 160px;
+  Border-radius: 14px;
+  Overflow: hidden;
+  Border: 1px solid #e5e7eb;
+}
+
+.leaflet-container {
+  Height: 100%;
+  Width: 100%;
+  Border-radius: 14px;
+}
+.vd-accept-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border:none;
+  background: #28a745;
+  color:white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.vd-accept-btn:hover {
+  background: #218838;
+}
+/* MOBILE */
+@media (max-width: 768px) {
+  .vd-card-body {
+    Grid-template-columns: 1fr;
+  }
+}
+

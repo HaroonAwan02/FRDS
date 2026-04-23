@@ -1,13 +1,115 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*/* {
+  box-sizing: border-box;
+}
+html,body,#root {
+  overflow-x:hidden ;
+  height:100%;
+  width:100%;
+  overflow-x: hidden;
+}
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  Background: linear-gradient(135deg, #1f4037, #99f2c8);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.auth-card {
+  Background: rgba(255, 255, 255, 0.15);
+  Backdrop-filter: blur(10px);
+  Padding: 30px;
+  Width: 380px;
+  Border-radius: 12px;
+  Box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  Text-align: center;
+  Color: #fff;
 }
+
+.auth-card h2 {
+  Margin-bottom: 5px;
+}
+
+.auth-subtitle {
+  Font-size: 14px;
+  Margin-bottom: 20px;
+  Opacity: 0.9;
+}
+
+.auth-card input,
+.auth-card select {
+  Width: 100%;
+  Padding: 12px;
+  Margin-bottom: 12px;
+  Border-radius: 6px;
+  Border: none;
+  Outline: none;
+}
+
+.btn-primary {
+  Width: 100%;
+  Padding: 12px;
+  Background: #00e5ff;
+  Border: none;
+  Border-radius: 6px;
+  Font-weight: bold;
+  Cursor: pointer;
+}
+
+.btn-primary:hover {
+  Background: #00bcd4;
+}
+
+.auth-footer {
+  Margin-top: 15px;
+  Font-size: 14px;
+}
+
+.auth-footer a {
+  Color: #00e5ff;
+  Text-decoration: none;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes popupFade{
+  from{
+    opacity:0;
+    transform: scale(0.9);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+Input:focus, select:focus {
+  Background: rgba(255,255,255,0.25) !important;
+  color: #fff;
+  Box-shadow: 0 0 8px rgba(255,255,255,0.6);
+  Outline: none;
+  Transition: all 0.3s ease;
+}
+
+
+Button:hover {
+  Background-color: #45a049;
+  Transform: translateY(-2px);
+  Box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  Transition: all 0.3s ease;
+}
+
+
+A:hover {
+  Color: #ffd700;
+  Text-decoration: underline;
+  Transition: 0.3s;
+}
+
+

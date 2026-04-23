@@ -1,0 +1,72 @@
+*	{
+  box-sizing: border-box;
+}
+.volunteer-page {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg,#f0f4ff,#f9fbff);
+  color:white;
+  font-family: "Segoe UI", sans-serif;
+}
+.volunteer-container {
+  width: 100%;
+  max-width: 850px;
+  background: #ffffff;
+  color: rgb(44, 44, 44);
+  Padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+}
+.volunteer-container:hover {
+  transform: translateY(-5px);
+}
+.volunteer-container h2 {
+  Margin-bottom: 15px;
+  color: #1f2937;
+}
+.info p {
+  margin:6px 0;
+  color:#555;
+  font-size: 15px;
+}
+.status-box {
+  margin-top:15px;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+.status-box.assigned {
+  background:#22c55e;
+}
+.status-box.assign {
+  background: #ef4444;
+}
+.loading {
+  color:white;
+  text-align: center;
+  margin-top:100px;
+}
+.donation-box {
+  margin-top:20px;
+  padding:15px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+.map-box {
+  margin-top: 20px;
+  width:100%;
+}
+.map {
+  height:300px;
+  width:100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.donation-box h3 {
+  margin-bottom: 10px;
+}
