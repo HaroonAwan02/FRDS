@@ -5,8 +5,10 @@ const ProtectedRoute=({role,children})=>{
     if (!token) {
         return <Navigate to="/login"/>
     }
-    if(role && 
-        (Array.isArray(role) && !role.includes(userRole)) || (!Array.isArray(role) && userRole !==role)) {
+    if(
+        role && 
+        (
+        (Array.isArray(role) && !role.includes(userRole)) || (!Array.isArray(role) && userRole !==role))) {
         return <Navigate to="/login"/>
     }
     return children;
