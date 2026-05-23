@@ -1,10 +1,10 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
 import { createDonation } from "../../services/donationService.js";
 import "./Dashboard.css";
-
 const DefaultIcon = L.icon({
   iconRetinaUrl:
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
@@ -28,6 +28,7 @@ function LocationPicker({ setCoords }) {
 }
 
 export default function FoodDonation() {
+  const [t]=useTranslation();
   const [coords, setCoords] = useState(null);
 
   const [form, setForm] = useState({
@@ -69,26 +70,26 @@ export default function FoodDonation() {
     <div className="fd-container">
       <div className="fd-card">
         <div className="fd-header">
-          <h1>Donate Food</h1>
-          <p>Select exact pickup location on map</p>
+          <h1>{t('Donate Food')}</h1>
+          <p>{t('Select exact pickup location on map')}</p>
         </div>
 
         <form className="fd-form" onSubmit={handleSubmit}>
-          <label>Name</label>
+          <label>{t('Name')}</label>
           <input type="text" placeholder="Your Name" name="donorName" value={form.donorName} onChange={handleChange}/>
-          <label>Food Type</label>
+          <label>{t('Food Type')}</label>
           <select
             name="foodType"
             value={form.foodType}
             onChange={handleChange}
           >
-            <option value="">Select food type</option>
-            <option>Cooked Food</option>
-            <option>Raw Food</option>
-            <option>Packaged Food</option>
+            <option value="">{t('Select food type')}</option>
+            <option>{t('Cooked Food')}</option>
+            <option>{t('Raw Food')}</option>
+            <option>{t('Packaged Food')}</option>
           </select>
 
-          <label>Quantity</label>
+          <label>{t('Quantity')}</label>
           <input
             type="text"
             name="quantity"
@@ -96,7 +97,7 @@ export default function FoodDonation() {
             onChange={handleChange}
           />
 
-          <label>Expiry Time</label>
+          <label>{t('Expiry Time')}</label>
           <input
             type="datetime-local"
             name="expiryTime"
@@ -104,7 +105,7 @@ export default function FoodDonation() {
             onChange={handleChange}
           />
 
-          <label>Pickup Address</label>
+          <label>{t('Pickup Address')}</label>
           <input
             type="text"
             name="locationText"
@@ -129,7 +130,7 @@ export default function FoodDonation() {
               )}
             </MapContainer>
           </div>
-          <button type="submit">Donate Food</button>
+          <button type="submit">{t('Donate Food')}</button>
         </form>
       </div>
     </div>

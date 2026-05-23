@@ -73,11 +73,6 @@
   border-radius: 20px;
   border: none;
 }
-.top-icons {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
 .title {
   margin:10px 0 20px 0;
 }
@@ -171,7 +166,7 @@ tbody tr {
 }
 .rating-card {
   padding:8px;
-  margin-top: -10px;
+  margin-top: 10px;
   margin-bottom: 20px;
   background: #fff;
   border-radius: 10px;
@@ -407,5 +402,84 @@ Input:-webkit-autofill {
     inset:0;
     background: rgba(0,0,0,0.0.4);
     z-index:1000;
+  }
+}
+@media(max-width:768px) {
+  .fd-container {
+    padding: 12px;
+    align-items: flex-start;
+  }
+  .fd-card {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+    border-radius: 14px;
+  }
+  .fd-header h1 {
+    font-size: 22px;
+  }
+ .fd-header p {
+  font-size: 13px;
+  margin-bottom: 16px;
+ }
+ .fd-form label {
+  font-size: 13px;
+  margin-top: 12px;
+ }
+ .fd-form button {
+  padding: 13px;
+  font-size: 15px;
+ }
+ .fd-map-box {
+  width: 95%;
+  padding: 12px;
+  border-radius: 14px;
+ }
+ .fd-map {
+  height: 260px;
+ }
+ .fd-map-close {
+  padding: 11px;
+  font-size: 14px;
+ }
+ .leaflet-container {
+  height: 220px !important;
+  width:100% !important;
+  border-radius: 12px;
+ }
+}
+@media(max-width:480px) {
+  .fd-container {
+    padding: 8px;
+  }
+  .fd-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .fd-header h1 {
+    font-size: 20px;
+  }
+  .fd-header p {
+    font-size: 12px;
+
+  }
+  .fd-form label {
+    font-size: 12px;
+  }
+  .fd-form,.fd-form select {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .fd.form button {
+    font-size: 14px;
+    padding: 12px;
+  }
+  .fd-map {
+    height: 220px;
+  }
+  .leaflet-container {
+    height: 200px !important;
+     width:100% !important;
   }
 }

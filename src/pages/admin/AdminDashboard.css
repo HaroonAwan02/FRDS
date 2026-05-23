@@ -2,29 +2,27 @@
 *	{
  margin: 0;
   padding: 0;
-  Box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-Html, body {
+html, body {
   width: 100%;
-  Overflow-x: hidden;
-  Font-family: “Segoe UI”, sans-serif;
+  overflow-x: hidden;
+  font-family: “Segoe UI”, sans-serif;
 }
-
-
 .admin-layout {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  Background: #f4f6f9;
+  background: #f4f6f9;
 }
 
 
 .sidebar {
   width: 240px;
   Min-width: 240px;
-  Background: linear-gradient(#2563eb, #1e40af);
-  Color: white;
+  background: linear-gradient(#2563eb, #1e40af);
+  color: white;
   padding: 20px;
 }
 
@@ -37,36 +35,54 @@ Html, body {
   align-items: center;
   gap: 12px;
   padding: 12px;
-  Border-radius: 8px;
+  border-radius: 8px;
   cursor: pointer;
 }
 .menu li:hover {
-  Background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.15);
   transform: translateX(2px);
+}
+
+.menu-link{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 .admin-main {
   flex: 1;
   width: 100%;
-  Max-width: 100%;
+  max-width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  Overflow-x: hidden;
+  overflow-x: hidden;
 }
 .topbar {
   background: linear-gradient(to right, #1e3a8a, #2563eb);
-  Color: white;
+  color: white;
   padding: 14px 20px;
-  Border-radius: 12px;
+  border-radius: 12px;
   display: flex;
-  Justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
 }
 .generate-report-btn {
-  Background: #0ea5e9;
-  padding: 4px 10px;
-  Border-radius: 20px;
- margin-top: 25px;
+   background: linear-gradient(135deg,#3029b1,#179bb3);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3 ease;
+  box-shadow: 0 4px 2px rgba(0,0,0,0.15);
+}
+.generate-report-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
 }
 .admin-stats {
   display: grid;
@@ -78,12 +94,12 @@ Html, body {
 .stat {
   padding: 26px;
   min-height: 120px;
-  Color: white;
+  color: white;
   border-radius: 14px;
 }
 .stat-card p {
   margin: 0;
-  Color: #f8fafc;
+  color: #f8fafc;
    Opacity: 0.9;
 }
 .stat-card h2 {
@@ -93,13 +109,13 @@ Html, body {
 
 .stat-card {
   padding: 20px;
-  Border-radius: 16px;
+  border-radius: 16px;
 }
 .positive {
   Font-size: 13px;
-  Background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.2);
   padding: 4px 10px;
-  Border-radius: 20px;
+  border-radius: 20px;
 }
 .stat-card:hover {
   transform: translateY(-2px);
@@ -215,12 +231,12 @@ border-bottom: 1px solid #333;
 .footer {
  margin-top: auto;
  margin-bottom: 30px;
-  Background: #5eead4;
+  background: #5eead4;
   padding: 16px;
-  Border-radius: 20px;
+  border-radius: 20px;
   Text-align: center;
   Font-style: italic;
-  Color: #064e3b;
+  color: #064e3b;
 }
 .hamburger {
   display: none;
@@ -270,5 +286,58 @@ border-bottom: 1px solid #333;
   }
   .chart-card {
     height: 200px;
+  }
+}
+@media(max-width:768px){
+  .admin-main {
+    padding: 10px;
+  }
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap:12px;
+  }
+  .topbar h3{
+    font-size: 18px;
+  }
+  .generate-report-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .admin-stats {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .stat-card {
+    width: 100%;
+  }
+  .charts {
+    grid-template-columns: 1fr;
+  }
+  .chart-card {
+    width:100%;
+    overflow-x: auto;
+  }
+  .chart-card canvas {
+    width:100% !important;
+    height: auto !important;
+  }
+  .user-section {
+    padding: 10px 0;
+    overflow-x: auto;
+  }
+  .user-table {
+    min-width: 700px;
+  }
+  .pagination {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .footer {
+    font-size: 14px;
+    padding: 12px;
+  }
+  .sidebar {
+    width: 240px;
   }
 }

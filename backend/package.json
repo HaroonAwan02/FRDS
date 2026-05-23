@@ -1,0 +1,31 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "frds backend",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "dependencies": {
+        "@google/generative-ai": "^0.24.1",
+        "bcryptjs": "^3.0.3",
+        "cors": "^2.8.6",
+        "crypto": "^1.0.1",
+        "dotenv": "^17.3.1",
+        "express": "^5.2.1",
+        "i18next": "^26.0.8",
+        "jsonwebtoken": "^9.0.3",
+        "mongoose": "^8.23.0",
+        "node-fetch": "^3.3.2",
+        "nodemailer": "^8.0.6",
+        "openai": "^6.34.0",
+        "pdfkit": "^0.18.0",
+        "react-i18next": "^17.0.4",
+        "socket.io": "^4.8.3",
+        "together-ai": "^0.39.0"
+    },
+    "devDependecies": {
+        "nodemon": "^3.1.0"
+    }
+}

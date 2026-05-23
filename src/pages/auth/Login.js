@@ -35,7 +35,6 @@ const Login = () => {
        localStorage.setItem("userId",data.user._id);
       localStorage.setItem("user",JSON.stringify(data.user));
       if(data.user.role === "ngo") {
-        console.log("full nuser obj",data.user);
         localStorage.setItem("ngo",data.user.ngo);
         navigate("/ngo/dashboard");
       } else if (data.user.role ==="donor") {
@@ -45,6 +44,8 @@ const Login = () => {
       }
       else if (data.user.role==="volunteer") {
         navigate("/volunteer/VolunteerList")
+      } else if(data.user.role==="admin"){
+        navigate("/admin");
       }
     } catch (err) {
       setError("Server error");
@@ -64,7 +65,7 @@ const Login = () => {
           <button type="submit" style={styles.Button}>Login</button>
 
           <p style={styles.Link}>
-            Dont Know password? <a href="/register"  style={{color:"#4caf50",fontWeight:"100"}}>Forget Password</a>
+            Dont Know password? <a href="/forgot-password"  style={{color:"#4caf50",fontWeight:"100"}}>Forget Password</a>
           </p>
         </form>
       </div>

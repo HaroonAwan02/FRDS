@@ -1,20 +1,30 @@
 import { useState } from "react";
-export default function ForgotPassword(){
+import "./ResetPassword.css";
+ function ForgotPassword(){
     const [email,setEmail]=useState("");
-    const handleSubmit = async(e)=>{
-        e.preventDefault();
-        await fetch("http://192.168.1.8:5000/api/users/forgot-password",{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({email})
-        });
-        alert("Reset link sent to your email");
+    const [message,setMessage]=useState("");
+    const handleSubmit=async(e)=>{
+      e.preventDefault();
+      const res=await fetch("http://localhost:5000/api/users/forgot-password",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({email})
+      });
+      const data=await res.json();
+      setMessage(data.message);
     };
-    return(
-    <form onSubmit={handleSubmit}>
-        <h2>Forgot Passowrd</h2>
-        <input type="email" placeholder="Enter email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-        <button type="submit">Send Reset Link</button>
-    </form>
+    return (
+        <div className="forgot-container">
+          <div className="forgot-card">
+            <h2 className="forgot-header">Forgot Password</h2>
+            <form onSubmit={handleSubmit} className="forgot-form">
+              <label>Email:</label>
+                <input type="email" placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)}required/>
+                <button type="submit" className="forgot-btn">Send Reset Link</button>
+            </form>
+            {message && <p>{message}</p>}
+            </div>
+        </div>
     );
-}
+ }
+ export default ForgotPassword;

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./Rating.css";
 export default function RateDonor() {
+  const {t}=useTranslation();
   const [search, setSearch] = useState("");
   const [selectedDonor, setSelectedDonor] = useState(null);
   const [rating, setRating] = useState(0);
@@ -47,9 +49,9 @@ export default function RateDonor() {
   return (
     <div className="rate-container">
       <div className="rate-card">
-        <h2>Rate Donor</h2>
+        <h2>{t('Rate Donor')}</h2>
         {/* Searchable Dropdown */}
-        <label>Select Donor</label>
+        <label>{t('Select Donor')}</label>
         <div className="dropdown">
           <input
             type="text"
@@ -77,14 +79,14 @@ export default function RateDonor() {
                   </li>
                 ))
               ) : (
-                <li className="empty">No donor found</li>
+                <li className="empty">{t('No donor found')}</li>
               )}
             </ul>
           )}
         </div>
 
         {/* Star Rating */}
-        <label>Rate Your Experience</label>
+        <label>{t('Rate Your Experience')}</label>
         <div className="stars">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
@@ -102,7 +104,7 @@ export default function RateDonor() {
         </div>
 
         {/* Comment */}
-        <label>Your Feedback</label>
+        <label>{t('Your Feedback')}</label>
         <textarea
           placeholder="Write your comments here..."
           value={comment}
@@ -114,11 +116,11 @@ export default function RateDonor() {
           disabled={!selectedDonor || rating === 0}
           onClick={handleSubmit}
         >
-          Submit Review
+          {t('Submit Review')}
         </button>
 
         <p className="note">
-          Your feedback helps improve donor collaboration.
+          {t('Your feedback helps improve donor collaboration.')}
         </p>
       </div>
     </div>

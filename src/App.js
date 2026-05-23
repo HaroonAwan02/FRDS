@@ -1,38 +1,4 @@
-/*import { Navigate, Route, Routes } from "react-router-dom";
-import './App.css';
-import ViewDonation from "./components/viewDonation.js";
-import AdminDashboard from "./pages/admin/AdminDashboard.js";
-import AnalyticsDashboard from "./pages/admin/Analyticsdashboard.js";
-import Home from "./pages/auth/Home.js";
-import Login from "./pages/auth/Login.js";
-import Register from "./pages/auth/Register.js";
-import { default as AddDonation } from "./pages/donor/AddDonation.js";
-import DonorDashboard from "./pages/donor/DonorDashboard.js";
-import RequestFood from "./pages/needy/RequestFood.js";
-import NGODashboard from "./pages/ngo/NGODashboard.js";
-import Rating from "./pages/ngo/Rating.js";
-import VolunteersList from "./pages/Volunteer/VolunteerList.js";
-const App=()=>{
-  return(
-      <Routes>
-        <Route path="/ngo/dashboard" element={<NGODashboard/>}/>
-        <Route path="/donor" element={<DonorDashboard/>}/>
-        <Route path="/" element={<Navigate to ="/Register"/>}/>
-        <Route path ="login" element={<Login/>}/>
-        <Route path="register" element={<Register/>}/>
-        <Route path="*" element={<Navigate to="/login"/>}/>
-        <Route path="/needy" element={<RequestFood/>}/>
-        <Route path="/Volunteer" element={<VolunteersList/>}/>
-        <Route path="/admin" element={<AdminDashboard/>}/>
-        <Route path="/Analyticsdashboard" element={<AnalyticsDashboard/>}/>
-        <Route path="/components/ViewDonation" element={<ViewDonation/>}/>
-        <Route path="Rating" element={<Rating/>}/>
-        <Route path="Home" element={<Home/>}/>
-        <Route path="/donor/AddDonation" element={<AddDonation/>}/>
-      </Routes>
-  );
-};
-export default App;*/
+
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -52,12 +18,12 @@ import RequestFood from "./pages/needy/RequestFood.js";
 import NGODashboard from "./pages/ngo/NGODashboard.js";
 import Rating from "./pages/ngo/Rating.js";
 import VolunteersList from "./pages/Volunteer/VolunteerList.js";
-
 const App = () => {
+  
   return (
     <Routes>
       {/* Default */}
-      <Route path="/" element={<Navigate to="/register" />} />
+      <Route path="/" element={<Navigate to="/home" />} />
       {/* Public Routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -65,12 +31,15 @@ const App = () => {
        <Route path="/forgot-password" element={<ForgotPassword/>}/>
        <Route path="/reset-password/:token" element={<ResetPassword/>}/>
       <Route path="/Analyticsdashboard" element={<AnalyticsDashboard/>}/>
-      <Route path="/admin" element={<AdminDashboard/>}/>
-      {/* Admin Routes */}
-     
       
-
-
+      {/* Admin Routes */}
+     <Route
+      path="/admin" element={
+      <ProtectedRoute role="admin">
+        <AdminDashboard/>
+      </ProtectedRoute>
+     }
+      />
       {/* NGO Routes */}
       <Route
         path="/ngo/dashboard"
@@ -93,12 +62,11 @@ const App = () => {
       <Route
         path="/components/viewDonation"
         element={
-          <ProtectedRoute role="ngo">
+          <ProtectedRoute role={["ngo","donor","admin"]}>
             <ViewDonation />
           </ProtectedRoute>
         }
       />
-
       {/* Donor Routes */}
       <Route
         path="/donor/dashboard"
@@ -132,7 +100,7 @@ const App = () => {
       <Route
         path="/volunteer/VolunteerList"
         element={
-          <ProtectedRoute role="admin">
+          <ProtectedRoute role="volunteer">
             <VolunteersList />
           </ProtectedRoute>
         }

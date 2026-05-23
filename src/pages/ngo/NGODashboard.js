@@ -6,21 +6,23 @@ import {
   User
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import socket from "../../services/socket.js";
 import "./NGODashboard.css";
 const NGODashboard = () => {
+  const {t}=useTranslation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
    const [notifications,setNotifications] =useState([]);
    const [volunteers,setVolunteers]=useState([]);
-     const [selectedDonationStatus,setSelectedDonationStatus]=useState("pending");
+     /*const [selectedDonationStatus,setSelectedDonationStatus]=useState("pending");*/
  /* const [count,setCount]=useState(0);*/
    const [show,setShow]=useState(false);
    const [donations,setDonations]=useState([]);
-   const [selectedDonation,setSelectedDonation]=useState(localStorage.getItem("acceptedDonationId"));
+   const [selectedDonation]=useState(localStorage.getItem("acceptedDonationId"));
    const [needyRequests,setNeedyRequests]=useState([]);
-   const assignedDonation=localStorage.getItem("assignedDonation");
-   localStorage.getItem("selectedDonation");
+   /*const assignedDonation=localStorage.getItem("assignedDonation");
+   localStorage.getItem("selectedDonation");*/
   useEffect(()=>{
     socket.onAny((event,...args)=>{
       console.log("event recieved",event,args);
@@ -61,10 +63,10 @@ const NGODashboard = () => {
        return [donation];
        return [donation,...prev]
     });
-      const accepted=donations.find(d=>d._id===selectedDonation);
+     /* const accepted=donations.find(d=>d._id===selectedDonation);
       if(accepted){
         setSelectedDonationStatus(accepted.status);
-      }
+      }*/
       fetch("http://localhost:5000/api/requests")
     .then(res=>res.json()).then(data=>setNeedyRequests(data));
   });
@@ -80,7 +82,7 @@ const NGODashboard = () => {
     localStorage.removeItem("user");
     navigate("/login");
   }
-   const acceptDonation =async(id)=>{
+   /*const acceptDonation =async(id)=>{
     await fetch(`http://localhost:5000/api/donations/accept/${id}`,{
       method:"PUT"
     });
@@ -89,14 +91,14 @@ const NGODashboard = () => {
     ));
     setSelectedDonation(id);
     console.log("selected",id);
-  };
+  };*/
   const assignVolunteer=async(donationId,volunteerId)=>{
-    const acceptDonation=donations.find(d=>d.status==="accepted");
+    const acceptedDonation=donations.find(d=>d.status==="accepted");
     if(!acceptedDonations){
       alert("please accept donation first");
       return;
     }
-     donationId=acceptDonation._id;
+     donationId=acceptedDonation._id;
     try {
       console.log("sending",{donationId,volunteerId});
       console.log("selectedDonation",selectedDonation);
@@ -111,7 +113,7 @@ const NGODashboard = () => {
       alert(data.message);
       return;
     }
-    setSelectedDonationStatus("assigned");
+    /*setSelectedDonationStatus("assigned");*/
     setDonations(prev=>prev.map(d=>d._id===donationId?{...d,status:"assigned",volunteer:volunteerId}:d
     )
   );
@@ -121,16 +123,17 @@ const NGODashboard = () => {
     }catch(err){
       console.log(err);
     }
-    
   };
   const toggleNotification=async()=>{
-    setShow(!show);
     const city=localStorage.getItem("city")?.toLowerCase();
-    if(!show){
+    setShow(prev=>!prev);
+    if(!show && city){
       try{
-        const res=await fetch(`http://localhost:5000/api/notifications/mark-read/${city}`,{
+        await fetch(`http://localhost:5000/api/notifications/mark-read/${city}`,{
         method:"PUT"
       });
+      setNotifications(prev=>prev.map(n=>({...n,isRead:true}))
+    );
       }catch(err){
         console.log(err);
       }
@@ -141,25 +144,26 @@ const NGODashboard = () => {
       method:"PUT"
     });
     setNeedyRequests(prev=>prev.map(r=>r._id===id?{...r,status:"approved"}:r
-      
+    
     )
   );
   };
-  const visibleDonations=donations.filter(d=>d.status==="pending"||d.status==="accepted");
+ /*const visibleDonations=donations.filter(d=>d.status==="pending"||d.status==="accepted");*/
   const pendingDonations =donations.filter(d=>(d.status||"").toLowerCase()==="pending").length;
   const acceptedDonations=donations.filter(d=>d.status==="accepted").length;
+  const unreadCount=notifications.filter(n=>!n.isRead).length;
   return (
     <div className="ngo-layout">
       {sidebarOpen && (<div className="mobile-overlay" onClick={()=>setSidebarOpen(false)}/>
   )}
       <aside className={`sidebar ${sidebarOpen ? "open" :""}`} onClick={(e)=>e.stopPropagation()} style={{ backgroundColor: "#aae6e3ff" }}>
-        <h2>NGO Dashboard</h2>
+        <h2>{t('NGO Dashboard')}</h2>
         <ul className="menu">
-          <li className="active"><Link to="/" className="menu-link"><Home size={20}/><span>Dashboard</span></Link></li>
-          <li><Link to="/components/viewDonation" className="menu-link"><Eye size={24}/><span>Donations</span></Link></li>
-          <li><Link to="/needy/RequestFood" className="menu-link"><HelpingHand size={24}/><span>Requests</span></Link></li>
-          <li><Link to="/Volunteer/VolunteerList" className="menu-link"><User size={24}/><span>Volunteers</span></Link></li>
-          <li><Link to="/login" className="menu-link" onClick={handleLogout}><LogOut size={24}/><span>Logout</span></Link></li>
+          <li className="active"><Link to="/" className="menu-link"><Home size={20}/><span>{t('Dashboard')}</span></Link></li>
+          <li><Link to="/components/viewDonation" className="menu-link"><Eye size={24}/><span>{t('Donations')}</span></Link></li>
+          <li><Link  className="menu-link"><HelpingHand size={24}/><span>{t('Requests')}</span></Link></li>
+          <li><Link  className="menu-link"><User size={24}/><span>{t('Volunteers')}</span></Link></li>
+          <li><Link to="/login" className="menu-link" onClick={handleLogout}><LogOut size={24}/><span>{t('Logout')}</span></Link></li>
         </ul>
       </aside>
       <main className="main">
@@ -167,11 +171,11 @@ const NGODashboard = () => {
           <div className="hamburger" onClick={()=>setSidebarOpen(true)}>
             ☰
             </div>
-          <h3>Welcome, Helping Hands NGO!</h3>
+          <h3>{t('Welcome, Helping Hands NGO!')}</h3>
           <div className="top-icons">
             <div style={{position:"relative"}}>
               <span onClick={toggleNotification}
-              style={{cursor:"pointer"}}>🔔{notifications.length}</span>
+              style={{cursor:"pointer"}}>🔔{unreadCount}</span>
               {show && (
                 <div style={{
                   position:"absolute",
@@ -189,7 +193,7 @@ const NGODashboard = () => {
                 }}>
                  <div className="notification-dropdown">
                   {notifications.length===0?(
-                    <p>No New Donation</p>
+                    <p>{t('No New Donation')}</p>
                   ):(
                     (Array.isArray(notifications)?notifications:[]).map((n,index)=>(
                       <p key={index}>
@@ -202,22 +206,21 @@ const NGODashboard = () => {
               )}
               </div>
             <span>✉️</span>
-            <span>Admin</span>
+            <span>{t('NGO')}</span>
           </div>
         </header>
         <section className="NGO-stats">
           <div className="card blue">
-            
             <div>
-              <h4><HandHeart size={34}/>New Donations</h4>
-              <p>{pendingDonations}Pending</p>
+              <h4><HandHeart size={34}/>{t('New Donations')}</h4>
+              <p>{pendingDonations}  {t('Pending')}</p>
             </div>
           </div>
 
           <div className="card green">
             
             <div>
-              <h4><User size={34}/>Volunteers</h4>
+              <h4><User size={34}/>{t('Volunteers')}</h4>
               <p>{volunteers.length}</p>
             </div>
           </div>
@@ -225,7 +228,7 @@ const NGODashboard = () => {
           <div className="card orange">
             
             <div>
-              <h4><HelpingHand size={34}/>Needy Requests</h4>
+              <h4><HelpingHand size={34}/>{t('Needy Requests')}</h4>
               <p>{needyRequests.length}</p>
             </div>           
           </div>
@@ -233,8 +236,8 @@ const NGODashboard = () => {
           <div className="card dark">
             
             <div>
-              <h4><FileText size={34}/>Reports</h4>
-              <p>{acceptedDonations} Alerts</p>
+              <h4><FileText size={34}/>{t('Reports')}</h4>
+              <p>{acceptedDonations}  {t('Alerts')}</p>
             </div>
           </div>
         </section>
@@ -244,21 +247,21 @@ const NGODashboard = () => {
           
           
           <div className="box large donation-table">
-            <h3>Recent Donations</h3>
+            <h3>{t('Recent Donations')}</h3>
             <table>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Contact</th>
-                  <th>Email</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th>{t('Name')}</th>
+                  <th>{t('Contact')}</th>
+                  <th>{t('Email')}</th>
+                  <th>{t('Status')}</th>
+                  <th>{t('Action')}</th>
                 </tr>
               </thead>
               <tbody>
                 {(!volunteers ||volunteers.length===0)&&(
                 <tr>
-                  <td colSpan="5">No volunteers </td></tr>
+                  <td colSpan="5">{t('No volunteers')} </td></tr>
                 )}
                 {volunteers.map((v)=>(
                   <tr key={v._id}>
@@ -288,16 +291,16 @@ const NGODashboard = () => {
           
           <div className="side-panels">
            
-              <h3>Needy Requests</h3>
+              <h3>{t('Needy Requests')}</h3>
               <div className="needy-scroll">
-                <tabel>
+                <table>
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Members</th>
-                      <th>Urgency</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th>{t('Name')}</th>
+                      <th>{t('Members')}</th>
+                      <th>{t('Urgency')}</th>
+                      <th>{t('Status')}</th>
+                      <th>{t('Action')}</th>
                     </tr>
                   </thead>
                
@@ -309,19 +312,19 @@ const NGODashboard = () => {
                     <td>{n.urgency}</td>
                     <td>{n.status}</td>
                     <td>{n.status==="pending" &&(
-                      <button disabled={n.status==="approved"} className="approve-btn" onClick={()=>approveRequest(n._id)}>Approve</button>
+                      <button disabled={n.status==="approved"} className="approve-btn" onClick={()=>approveRequest(n._id)}>{t('Approve')}</button>
                     )}
                     {n.status==="approved" &&"Approved"}</td>
                     </tr>
                   ))}
                 </tbody>
-                 </tabel>
+                 </table>
               </div>
           </div>
 
         </section>
        <footer className="footer">
-            <p>Technology is most powerful when its brings people togather to help those in need</p>
+            <p>{t('Technology is most powerful when its brings people togather to help those in need')}</p>
           </footer>
       </main>
     </div>

@@ -40,7 +40,7 @@ const Register = () => {
       setError("Passwords do not match");
       return;
     }
-      if((form.role=="ngo"||form.role==="volunteer"||form.role==="needy")&& !form.ngo)
+      if((form.role==="ngo"||form.role==="volunteer"||form.role==="needy")&& !form.ngo)
         {
           setError("please select NGO");
           return;

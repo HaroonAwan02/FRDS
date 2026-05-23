@@ -1,0 +1,13 @@
+import express from "express";
+import { generateReport, getAdminStats, getAllUsers, getDonationAnalytics, getMonthlyDonations, getReports, reportedUsers, unreportUser } from "../controllers/adminController.js";
+const router=express.Router();
+router.get("/stats",getAdminStats);
+router.get("/analytics",getDonationAnalytics);
+router.put("/report/:id",reportedUsers);
+router.get("/monthly",getMonthlyDonations);
+router.get("/users",getAllUsers);
+router.put("/unreport/:id",unreportUser);
+router.get("/report",generateReport);
+router.get("/reports",getReports);
+router.post("/generate",generateReport);
+export default router;

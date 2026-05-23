@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import "./AdminDashboard.css";
 ChartJS.register(
@@ -31,6 +32,7 @@ ChartJS.register(
   Legend
 );
 export default function AdminDashboard() {
+  const {i18n}=useTranslation();
   const [sidebarOpen,setSidebarOpen]=useState(false);
   const [stats,setStats]=useState({});
   const [chartData,setChartData]=useState([]);
@@ -47,6 +49,10 @@ export default function AdminDashboard() {
   }
   const navigate=useNavigate();
   useState(()=>{
+    document.body.dir="ltr";
+    if(i18n.language!=="en") {
+      i18n.changeLanguage("en");
+    }
     fetch("http://localhost:5000/api/admin/stats").then(res=>res.json()).then(data=>setStats(data));
     fetch("http://localhost:5000/api/admin/analytics").then(res=>res.json()).then(data=>setChartData(data));
     fetch("http://localhost:5000/api/admin/monthly").then(res=>res.json()).then(data=>setMonthlyData(data));
@@ -100,10 +106,10 @@ export default function AdminDashboard() {
         <h2 className="logo">Admin</h2>
         <ul className="menu">
           <li><Home size={24}/> Dashboard</li>
-          <li><Eye size={24}/> Donations</li>
-          <li><User size={24}/> Users</li>
-          <li><Blocks size={24}/> Reports</li>
-          <li><Link to="/login" onClick={handleLogout}><LogOut size={20}/>Logout</Link></li>
+          <li><Link to="/components/viewDonation" className="menu-link"><Eye size={24}/> <span>Donations</span></Link></li>
+          <li><Link to="" className="menu-link"><User size={24}/><span>Users</span></Link></li>
+          <li><Link to="/Analyticsdashboard" className="menu-link"><Blocks size={24}/><span>Analytics</span></Link></li>
+          <li><Link to="/login" onClick={handleLogout} className="menu-link"><LogOut size={24}/>Logout</Link></li>
         </ul>
         
       </aside>

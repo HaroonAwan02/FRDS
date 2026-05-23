@@ -1,97 +1,13 @@
-/*import { useState } from "react";
-import needyBanner from "../../assets/images/Fooddonation.jpg";
-import "./RequestFood.css";
-
-const RequestFood = () => {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    type: "",
-    familyMembers: "",
-    urgency: "",
-    reason: "",
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Request submitted successfully");
-  };
-
-  return (
-    <div className="needy-container">
-      <form className="needy-form" onSubmit={handleSubmit}>
-        <div className="needy-banner">
-         <img src={needyBanner} alt="Needy Request" />
-        <h2>Needy Request Form</h2>
-      </div>
-      <label>Name</label>
-        <div className="row">
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="lastName"
-            Placeholder="Last Name"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <label>Type</label>
-        <select name="type" onChange={handleChange} required>
-          <option value="">Request Type</option>
-          <option value="food">Food</option>
-        </select>
-        <label>Family Members</label>
-        <input
-          Type="number"
-          Name="familyMembers"
-          Placeholder="Number of Family Members"
-          onChange={handleChange}
-          required
-        />
-         <label>Urgency level</label>
-        <select name="urgency" onChange={handleChange} required>
-          <option value="">Urgency Level</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <label>Reason</label>
-        <textarea
-          Name="reason"
-          Placeholder="Reason for request"
-          Rows="3"
-          onChange={handleChange}
-          required
-        />
-
-        <button type="submit">Submit Request</button>
-      </form>
-    </div>
-  );
-};
-
-export default RequestFood;
-*/
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import needyBanner from "../../assets/images/Fooddonation.jpg";
 import "./RequestFood.css";
-
 const RequestFood = () => {
-
-const [tab,setTab]=useState("form");
+const {t}=useTranslation();
+const [tab]=useState("form");
 const [requests,setRequests]=useState([]);
 const [activeTab,setActiveTab]=useState("form");
-const user=JSON.parse(localStorage.getItem("user"));
+/*const user=JSON.parse(localStorage.getItem("user"));*/
 
 const [form,setForm]=useState({
 firstName:"",
@@ -154,24 +70,10 @@ return(
 
 <div className="needy-banner">
 <img src={needyBanner} alt="Needy Request"/>
-<h2>Needy Request Form</h2>
-</div>
-<div className="tabs">
-<button
-className={tab==="form"?"active":""}
-onClick={()=>setActiveTab("form")}
->
-Request Food
-</button>
 
-<button
-className={tab==="myrequests"?"active":""}
-onClick={()=>setActiveTab("my")}
->
-My Requests
-</button>
 </div>
-<label>Name</label>
+
+<label>{t('Name')}</label>
 
 <div className="row">
 
@@ -193,14 +95,14 @@ required
 
 </div>
 
-<label>Type</label>
+<label>{t('Type')}</label>
 
 <select name="type" onChange={handleChange} required>
-<option value="">Request Type</option>
-<option value="food">Food</option>
+<option value="">{t('Request Type')}</option>
+<option value="food">{t('Food')}</option>
 </select>
 
-<label>Family Members</label>
+<label>{t('Family Members')}</label>
 
 <input
 type="number"
@@ -210,16 +112,16 @@ onChange={handleChange}
 required
 />
 
-<label>Urgency level</label>
+<label>{t('Urgency level')}</label>
 
 <select name="urgency" onChange={handleChange} required>
-<option value="">Urgency Level</option>
-<option value="low">Low</option>
-<option value="medium">Medium</option>
-<option value="high">High</option>
+<option value="">{t('Urgency Level')}</option>
+<option value="low">{t('Low')}</option>
+<option value="medium">{t('Medium')}</option>
+<option value="high">{t('High')}</option>
 </select>
 
-<label>Reason</label>
+<label>{t('Reason')}</label>
 
 <textarea
 name="reason"
@@ -228,9 +130,15 @@ rows="3"
 onChange={handleChange}
 required
 />
-
-<button type="submit">Submit Request</button>
-
+<div className="tabs">
+<button type="submit">{t('Submit Request')}</button>
+<button
+className={tab==="myrequests"?"active":""}
+onClick={()=>setActiveTab("my")}
+>
+{t('My Requests')}
+</button>
+</div>
 </form>
 )}
 
@@ -238,16 +146,16 @@ required
 
 <div className="myrequests">
 
-<h2>My Requests</h2>
+<h2>{t('My Requests')}</h2>
 
 <table>
 
 <thead>
 <tr>
-<th>Name</th>
-<th>Members</th>
-<th>Urgency</th>
-<th>Status</th>
+<th>{t('Name')}</th>
+<th>{t('Members')}</th>
+<th>{t('Urgency')}</th>
+<th>{t('Status')}</th>
 </tr>
 </thead>
 

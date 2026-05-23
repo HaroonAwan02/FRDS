@@ -1,120 +1,283 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 .needy-container {
-  max-width: 500px;
-  margin:10px auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-  background: #fff;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+   width:100%;
+    Margin:-20px auto;
+    Border-radius: 20px; 
+    Box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); 
+    Overflow: hidden;
+    Background: #fff;
+    Font-family: 'Poppins', sans-serif; 
+    Display: flex;
+    justify-content: center;
+    align-items: center;
+    Padding: 20px; 
+    z-index: 1;
 }
-.needy-banner {
-  Position: relative;
-  Text-align: center;
-}
-.needy-banner img {
+.needy-container::before {
+  content: "";
+  position: absolute;
+  top:0;
+  left: 0;
   width: 100%;
-  height: 200px;
-  Object-fit: cover;
+  height:350px;
+  background-image: url("../../assets/images/nature2.jpg");
+  background-size:100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-bottom-left-radius: 60% 350px;
+  border-bottom-right-radius: 60% 350px;
+  z-index: 0;
 }
-.needy-banner h2 {
-  Position: absolute;
-  bottom: 5px;
-  Width: 100%;
-  Color: #f8e807;
-  Font-weight: bold;
-  Letter-spacing: 1px;
+.needy-form {
+    Background: #ffffff;
+    Width: 100%;
+    Border-radius: 20px;
+    Padding: 0; 
+    Box-shadow: none; 
+    z-index:10;
 }
 
-.needy-form {
-  background: #ffffff;
-  padding: 18px;
-  height: auto;
-  max-width: 500px;
-  width:600px;
-  border-radius: 12px;
-  Box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+.needy-banner {
+    Position: relative;
+    Text-align: center;
+    Border-radius: 16px;
+    Overflow: hidden;
+    Margin-bottom: 25px;
+}
+
+.needy-banner img {
+    Width: 100%;
+    Height: 250px; 
+    Object-fit: cover;
+}
+.tabs {
+    Display: flex;
+    Justify-content: space-between; 
+    Gap: 15px;
+    Padding: 0 25px 25px 25px; 
+    Background: #fff; 
+}
+
+.tabs button {
+    Flex: 1;
+    Padding:20px;
+    Border: none;
+    Cursor: pointer;
+    Font-size: 15px;
+    Font-weight: 600;
+    Border-radius: 8px;
+    Transition: all 0.3s ease;
+    Text-align: center;
+    Font-family: ‘Poppins’, sans-serif;
+}
+.tabs button {
+    Background: #e74c3c; 
+    Color: white;
+}
+
+.tabs button.active {
+    Background: #E74C3C;
+    Color: white;
+}
+
+.tabs button:hover {
+    Opacity: 0.9;
+    Transform: translateY(-1px);
 }
 .needy-form label {
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  display: block;
+    Font-size: 13px;
+    Font-weight: 600;
+    Color: #4B5563;
+    Margin-top: 15px;
+    Margin-bottom: 6px;
+    Display: block;
+    Text-transform: uppercase; 
+    Letter-spacing: 0.5px;
 }
+
 .needy-form input,
 .needy-form select,
 .needy-form textarea {
-  Width: 100%;
-  Padding: 11px 12px;
-  Margin-bottom: 14px;
-  Border-radius: 8px;
-  Border: 1px solid #cfd6e0;
-  Font-size: 14px;
-  background: #fcfbfb;
-  Color: #1f2937; 
+    Width: 100%;
+    Padding: 12px 16px;
+    Margin-bottom: 15px;
+    Border-radius: 8px;
+    Border: 1px solid #E5E7EB; 
+    Font-size: 14px;
+    Background: #F9FAFB; 
+    Color: #1F2937;
+    Transition: all 0.2s ease;
+    Box-sizing: border-box; 
 }
 
-
+.row {
+    Display: flex;
+    Gap: 15px;
+}
 .needy-form input::placeholder,
 .needy-form textarea::placeholder {
-  Color: #525252;
+    Color: #9CA3AF;
 }
 .needy-form input:focus,
 .needy-form select:focus,
 .needy-form textarea:focus {
-  color:black;
-  Outline: none;
-  Border-color: #2b7cff;
-  Box-shadow: 0 0 0 2px rgba(43, 124, 255, 0.15);
+    Color: black;
+    Outline: none;
+    Border-color: #4A90E2;
+    Box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 
-.row {
-  Display: flex;
-  Gap: 12px;
+.needy-form button[type="submit"] {
+    background:#003f5c;
 }
 
-
-.needy-form button {
-  Width: 100%;
-  Padding: 12px;
-  Background: #2b7cff;
-  Color: #ffffff;
-  Border: none;
-  Border-radius: 8px;
-  Font-size: 15px;
-  Font-weight: 600;
-  Cursor: pointer;
+.needy-form button[type="submit"]:hover {
+    Background: #52f113;
+    Transform: translateY(-1px);
+}
+.myrequests,.needy-form {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.05);
+   max-width: 500px;
+   margin-left: auto;
+   margin-right: auto;
+    padding: 15px ;
+    width: 100%;
 }
 
-.needy-form button:hover {
-  Background: #1f63d8;
+.myrequests h2 {
+    Text-align: center;
+    Color: #1F2937;
+    Margin-bottom: 20px;
+    Font-weight: 700;
 }
-.tabs {
-  display: flex;
-  justify-content: center;
-  gap:15px;
-  padding: 15px;
-  background: #f5f5f5;
+
+.myrequests table {
+    Width: 100%;
+    Border-collapse: separate;
+    Border-spacing: 0;
+    Border: 1px solid #E5E7EB;
+    Border-radius: 8px;
+    Overflow: hidden;
 }
-.tabs button {
-  padding:120 20pxpx;
-  border:none;
-  background: #f70505;
-  cursor:pointer;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 8px;
-  transition: 0.3 ease;
+
+.myrequests th {
+    Background-color: #F9FAFB;
+    Color: #4B5563;
+    Font-weight: 600;
+    Font-size: 13px;
+    Text-transform: uppercase;
+    Letter-spacing: 0.5px;
+    Padding: 12px 15px;
+    Text-align: left;
+    Border-bottom: 1px solid #E5E7EB;
 }
-.tabs button:hover {
-  transform: translateY(-2px);
+
+.myrequests td {
+    Padding: 12px 15px;
+    Border-bottom: 1px solid #E5E7EB;
+    Color: #1F2937;
+    Font-size: 14px;
 }
-.tabs button.active {
-  background:#007bff;
-  color:white;
+
+.myrequests tr:last-child td {
+    Border-bottom: none;
 }
-.content {
-  padding: 20px;
+
+.myrequests tr:hover td {
+    Background-color: #F3F4F6;
 }
+@media(max-width:768px) {
+    .needy-container {
+        padding: 12px;
+        margin: 0;
+        min-height: auto;
+        align-items: flex-start;
+    }
+    .needy-container::before {
+        height: 220px;
+        background-size: cover;
+        border-bottom-left-radius: 40% 180px;
+        border-top-right-radius: 40% 180px;
+    }
+    .needy-form,.myrequests {
+        width: 100%;
+        max-width: 100%;
+        padding: 14px;
+        border-radius: 16px;
+    }
+    .needy-banner img {
+    height: 180px;
+    border-radius: 12px;
+    }
+    .row {
+        flex-direction: column;
+        gap:0;
+    }
+    .needy-form label {
+        font-size: 12px;
+    }
+    .needy-form input,.needy-form select,.needy-form textarea {
+        font-size: 14px;
+        padding: 11px 14px;
+    }
+    .tabs {
+        flex-direction: column;
+        gap:12px;
+        padding: 10px 0 0 0;
+
+    }
+    .tabs button {
+        width: 100%;
+        padding: 14px;
+        font-size: 14px;
+    }
+    .myrequests {
+        overflow-x: auto;
+    }
+    .myrequests table {
+        min-width: 250px;
+    }
+    .myrequests th,.myrequests td {
+        padding: 10px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+    .myrequests h2 {
+        font-size: 22px;
+    }
+}
+@media(max-width:480px) {
+    .needy-container {
+        padding: 8px;
+    }
+    .needy-container::before {
+        height: 120px;
+        background-size: cover;
+        border-bottom-left-radius: 20% 90px;
+        border-top-right-radius: 30% 130px;
+    }
+    .needy-form,.myrequests {
+        padding: 12px;
+        border-radius: 14px;
+    }
+    .needy-banner img {
+        height: 150px;
+    }
+    .tabs button {
+        font-size: 13px;
+        padding: 12px;
+    }
+    .needy-form input,.needy-form select,.needy-form textarea {
+        font-size: 13px;
+    }
+    .myrequests {
+        font-size: 18px;
+    }
+}
+

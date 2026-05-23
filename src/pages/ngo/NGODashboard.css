@@ -5,41 +5,39 @@
   Font-family: "Segoe UI", sans-serif;
 }
 .ngo-layout {
-  display: flex;
+   display: flex;
   min-height: 100vh;
 }
 .sidebar {
   width: 240px;
   background: linear-gradient(180deg, #4f46e5, #4338ca);
   Color: white;
-  padding: 20px;
-  
+  padding: 20px; 
 }
-
 .sidebar h2 {
-  Margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .sidebar ul li {
-  List-style: none;
-  Padding: 12px 0;
-  Cursor: pointer;
+  list-style: none;
+  padding: 12px 0;
+  cursor: pointer;
 }
 
 .sidebar .logout {
-  Margin-top: 40px;
+  margin-top: 40px;
   Color: #ffb3b3;
 }
 .menu img {
-  Width: 20px;
+  width: 20px;
 }
 .menu li {
-  Display: flex;
-  Align-items: center;
-  Gap: 10px;
-  Padding: 12px;
-  Border-radius: 8px;
-  Cursor: pointer;
+   display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .menu li.active,
@@ -47,7 +45,7 @@
   Background: rgba(255, 255, 255, 0.15);
 }
 .menu-link {
-  display: flex;
+   display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
@@ -59,7 +57,7 @@
 .main {
   flex: 1;
   Background: #f4f6f9;
-  display: flex;
+   display: flex;
   flex-direction: column;
 }
 
@@ -67,7 +65,7 @@
   height: 60px;
   Background: linear-gradient(to right, #2c4c6d, #446b8f);
   Color: white;
-  display: flex;
+   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
@@ -76,7 +74,7 @@
 }
 
 .top-icons {
-  display: flex;
+   display: flex;
   align-items: center;
   gap: 15px;
 }
@@ -84,12 +82,12 @@
 .top-icons img {
   width: 35px;
   height: 35px;
-  Border-radius: 50%;
+  border-radius: 50%;
 }
 
 
 .NGO-stats {
-  display: grid;
+   display: grid;
   Grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 15px;
@@ -99,22 +97,22 @@
   max-height: 130px;
 }
 .NGO-stats .card div {
-  display: flex;
+   display: flex;
   flex-direction: column;
   justify-content:center ;
 }
 .card {
-  Display: flex;
-  Align-items: center;
-  Gap: 15px;
+   display: flex;
+  align-items: center;
+  gap: 15px;
   padding: 20px;
   Color: white;
-  Border-radius: 12px;
+  border-radius: 12px;
   Backdrop-filter: blur(10px);
 }
 
 .card img {
-  Width: 50px;
+  width: 50px;
 }
 
 .blue { background: #355c7d; }
@@ -124,9 +122,9 @@
 
 
 .content {
-  display: grid;
+   display: grid;
   grid-template-columns: 3fr 1fr;
-  Gap: 20px;
+  gap: 20px;
   flex:1;
   padding: 20px;
   align-content: start;
@@ -134,8 +132,8 @@
 
 .box {
   Background: #fff;
-  Border-radius: 12px;
-  Padding: 20px;
+  border-radius: 12px;
+  padding: 20px;
 }
 .donation-table {
   max-height: 320px;
@@ -146,7 +144,7 @@
   border-collapse: collapse;
 }
 .donation-table tbody {
-  display: block;
+   display: block;
   max-height: 220px;
   overflow-y: auto;
 }
@@ -154,12 +152,12 @@
   background: #f2f2f2;
 }
 .donation-table thead tr {
-  display: table;
+   display: table;
   width: 100%;
   table-layout: fixed;
 }
 .donation-table tbody tr {
-  display: table;
+   display: table;
   width: 100%;
   table-layout: fixed;
 }
@@ -172,7 +170,7 @@
   overflow-y: auto;
 }
 .large table {
-  Width: 100%;
+  width: 100%;
   Border-collapse: separate;
   Border-spacing: 0 12px;
 }
@@ -189,7 +187,7 @@
   border-radius: 12px;
   border-radius: 5px;
   color: rgb(24, 23, 23);
-  display: inline-block;
+   display: inline-block;
 }
 .pending { background: #6c757d; }
 .accepted { background: #f0ad4e; }
@@ -197,9 +195,9 @@
 .done { background: #5cb85c; }
 
 .side-panels {
-  Display: flex;
+   display: flex;
   Flex-direction: column;
-  Gap: 20px;
+  gap: 20px;
   background-color: rgb(255, 255, 255);
   border-radius: 2px solid black;
   padding: 20px;
@@ -231,16 +229,16 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 .hamburger {
-  display:none;
+   display:none;
   font-size: 26px;
   cursor: pointer;
 }
 @media(max-width:900px){
   .hamburger {
-    display: block;
+     display: block;
   }
   .ngo-layout {
-    display: block;
+     display: block;
     height:auto;
   }
   .sidebar {
@@ -281,7 +279,60 @@
       width:100%;
     }
     table {
-     display: block;
+      display: block;
      overflow-x: auto;
     }
+}
+@media(max-width:768px){
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap:10px;
+    height:auto;
+    padding: 15px;
+  }
+  .topbar h3 {
+    font-size: 18px;
+  }
+  .top-icons {
+    width:100%;
+    justify-content: space-between;
+  }
+  .NGO-stats {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+  .card {
+    width:100%;
+  }
+  .content {
+    grid-template-columns: 1fr;
+    padding:10px;
+  }
+  .box {
+    width:100%;
+    overflow-x: auto;
+  }
+  .donation-table {
+    overflow-x: auto;
+  }
+  .donation-table table{
+    width: 800px;
+  }
+  .side-panels {
+    overflow-x: auto;
+  }
+  .needy-scroll table {
+    min-width: 600px;
+  }
+  .footer {
+    font-size: 14px;
+    padding: 15px;
+  }
+  .sidebar {
+    height:50vh;
+  }
+  .menu-link span {
+    font-size: 14px;
+  }
 }

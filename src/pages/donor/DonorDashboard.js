@@ -8,18 +8,21 @@ import {
   Star
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 export default function DonorDashboard() {
+  const [t]=useTranslation();
   const [sidebarOpen,setSidebarOpen]=useState(false);
   const [donations,setDonations]=useState([]);
   const [reviews,setReviews]=useState([]);
   const [avgRating,setAvgRating]=useState(0);
-  const [page,setPage]=useState(1);
-  const [TotalPages,setTotalPages]=useState(1);
+  const [donationpage,setDonationPage]=useState(1);
+  const [reviewPage,setReviewPage]=useState(1);
+  /*const [TotalPages,setTotalPages]=useState(1);*/
   const navigate=useNavigate();
   const reviewsPerPage=2;
-  const reviewStart=(page-1)*reviewsPerPage;
+  const reviewStart=(reviewPage-1)*reviewsPerPage;
   const paginatedReviews=reviews.slice(reviewStart,reviewStart+reviewsPerPage);
   const totalReviewPages=Math.ceil(reviews.length/reviewsPerPage);
    const itemsPerPage=4;
@@ -31,10 +34,10 @@ export default function DonorDashboard() {
     }
     useEffect(()=>{
       fetchDonations();
-      fetchReviews(page);
+      fetchReviews(reviewPage);
       const interval=setInterval(fetchDonations,3000);
       return()=>clearInterval(interval);
-    },[page]);
+    },[reviewPage]);
     const fetchDonations=async()=>{
       try{
         const user= JSON.parse(localStorage.getItem("user"));
@@ -53,8 +56,7 @@ export default function DonorDashboard() {
         const res=await fetch(`http://localhost:5000/api/ratings/${user._id}`);
         const data=await res.json();
         setReviews(data.ratings||[]);
-         setTotalPages(data.TotalPages|| 1);
-         setPage(data.page||1);
+         /*setTotalPages(data.TotalPages|| 1);*/
         const avg=data.ratings.length > 0 ? data.ratings.reduce((acc,r)=>acc+r.rating,0)/data.ratings.length:0;
         setAvgRating(avg.toFixed(1));
       }catch(err){
@@ -65,7 +67,7 @@ export default function DonorDashboard() {
     const pending= donations.filter(d=>d.status==="pending").length;
     const completed=donations.filter(d=>d.status==="completed").length;
     const successRate=total===0?0:((completed/total)*100).toFixed(2);
-     const start=(page-1)*itemsPerPage;
+     const start=(donationpage-1)*itemsPerPage;
   const paginationDate=donations.slice(start,start+itemsPerPage);
   return (
     <div className="donor-page">
@@ -75,12 +77,12 @@ export default function DonorDashboard() {
       )}
       {/* Sidebar */}
       <aside className={`sidebar ${sidebarOpen?"open" :""}`} onClick={(e)=>e.stopPropagation()}>
-        <div className="logo">💧 Donate</div>
+        <div className="logo">{t('💧 Donate')}</div>
         <ul className="menu">
-          <li className="active"><Link to="/" className="menu-link"><Home size={20}/><span>Dashboard</span></Link></li>
-          <li><Link to="/donor/AddDonation" className="menu-link"><HandHeart size={20}/><span>Donate</span></Link></li>
-          <li><Link to="/components/viewDonation" className="menu-link"><Eye size={20}/><span>Donations</span></Link></li>
-          <li><Link to="/login" className="menu-link" onClick={handleLogout}><LogOut size={20}/><span>Logout</span></Link></li>
+          <li className="active"><Link to="/" className="menu-link"><Home size={20}/><span>{t('Dashboard')}</span></Link></li>
+          <li><Link to="/donor/AddDonation" className="menu-link"><HandHeart size={20}/><span>{t('Donate')}</span></Link></li>
+          <li><Link to="/components/viewDonation" className="menu-link"><Eye size={20}/><span>{t('Donations')}</span></Link></li>
+          <li><Link to="/login" className="menu-link" onClick={handleLogout}><LogOut size={20}/><span>{t('Logout')}</span></Link></li>
         </ul>
       </aside>
       {/* Main Area */}      <main className="main-content">
@@ -89,45 +91,40 @@ export default function DonorDashboard() {
           <div className="hamburger" onClick={()=>setSidebarOpen(!sidebarOpen)}>
             ☰
           </div>
-          <h2>❤️ CareShare</h2>
-          <div className="top-icons">
-            <span>🔔</span>
-            <span>📩</span>  
-              <span>John Doe</span>
-          </div>
+          <h2>{t('❤️ CareShare')}</h2>
         </div>
 
         {/* Dashboard Title */}
-        <h2 className="title">Welcome Donor</h2>
+        <h2 className="title">{t('Welcome Donor')}</h2>
 
         {/* Stats Cards */}
         <div className="stats">
           <div className="card green">
             <h3><HandHeart size={34}/>{total}</h3>
-            <p>Total Donations</p>
+            <p>{t('Total Donations')}</p>
           </div>
           <div className="card red">
             <h3><BarChart size={34}/>{pending}</h3>
-            <p>Pending Pickups</p>
+            <p>{t('Pending Pickups')}</p>
           </div>
           <div className="card purple">
             <h3><CheckCircle size={34}/>{completed}</h3>
-            <p>Completed</p>
+            <p>{t('Completed')}</p>
           </div>
           <div className="card blue">
             <h3><Star size={34}/>{successRate}%</h3>
-            <p>Success Rate</p>
+            <p>{t('Success Rate')}</p>
           </div>
         </div>
          <div className="rating-card">
-          <h3>Your Rating</h3>
+          <h3>{t('Your Rating')}</h3>
           <div className="rating-summary">
             <h2>★{avgRating||0}/5</h2>
             <p>{avgRating>=4?"Trusted donor":avgRating>=3?"Good Donor":"Need improment"}</p>
           </div>
           <div className="review-list">
             {Array.isArray(reviews)&&reviews.length===0?(
-              <p>No review yet</p>
+              <p>{t('No review yet')}</p>
             ):(
             paginatedReviews.slice(0,3).map((r)=>(
               <div key={r._id} className="review-item">
@@ -138,40 +135,40 @@ export default function DonorDashboard() {
           )}
           
           <div className="pagination">
-                <button onClick={()=>setPage(page-1)} disabled={page===1}>
-                  prev
+                <button onClick={()=>setReviewPage(reviewPage-1)} disabled={reviewPage===1}>
+                 {t(' prev')}
                 </button>
-                 <button className="active">{page}</button>
-                <button onClick={()=>setPage(page+1)} disabled={page===totalReviewPages}>Next</button>
+                 <button className="active">{reviewPage}</button>
+                <button onClick={()=>setReviewPage(reviewPage+1)} disabled={reviewPage===totalReviewPages}>{t('Next')}</button>
                 </div>
           </div>
          </div>
         {/* Table */}
         <div className="table-card">
           <div className="table-header">
-            <h3>Donor List</h3>
+            <h3>{t('Donor List')}</h3>
           </div>
           <table>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Food</th>
-                <th>Date</th>
-                <th>Status</th>
+                <th>{t('Name')}</th>
+                <th>{t('Food')}</th>
+                <th>{t('Quantity')}</th>
+                <th>{t('Date')}</th>
+                <th>{t('Status')}</th>
               </tr>
             </thead>
 
             <tbody>
               {paginationDate.length===0?(
-                <tr><td colSpan="4">No Donations</td>
+                <tr><td colSpan="4">{t('No Donations')}</td>
                 </tr>
               ):(
                 paginationDate.map((d)=>(
                   <tr key={d._id}>
                   <td>{d.donorName||"You"}</td>
-                  <td>{d.email||"N/A"}</td>
-                  <td>{d.foodType}({d.quantity})</td>
+                   <td>{d.foodType}</td>
+                  <td>{d.quantity}</td>
                   <td>{new Date(d.createdAt).toLocaleDateString()}</td>
                   <td><span className={`status ${d.status}`}>{d.status}</span></td>
                 </tr>
@@ -182,13 +179,13 @@ export default function DonorDashboard() {
 
           {/* Pagination */}
           <div className="pagination">
-            <button onClick={()=>setPage(page-1)} disabled={page===1}>{"<"}</button>
-            <button className="active">{page}</button>
-            <button onClick={()=>setPage(page+1)} disabled={start+itemsPerPage>=donations.length}>{">"}</button>
+            <button onClick={()=>setDonationPage(donationpage-1)} disabled={donationpage===1}>{"<"}</button>
+            <button className="active">{donationpage}</button>
+            <button onClick={()=>setDonationPage(donationpage+1)} disabled={start+itemsPerPage>=donations.length}>{">"}</button>
           </div>
         </div>
         <footer className="footer">
-            <p>The smallest act of kindness is worth more than the grandest intention</p>
+            <p>{t('The smallest act of kindness is worth more than the grandest intention')}</p>
           </footer>
       </main>
     </div>

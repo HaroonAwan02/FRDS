@@ -1,6 +1,7 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { acceptDonationAPI, getDonations } from "../services/donationService.js";
 import "./viewDonation.css";
@@ -15,7 +16,7 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function ViewDonation() {
-
+ const {t}=useTranslation();
   const [donations, setDonations] = useState([]);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function ViewDonation() {
   };
     const acceptDonation=async(id)=>{
       try{
-        const res=await acceptDonationAPI(id);
+        await acceptDonationAPI(id);
         setDonations(prev=>
           prev.map(d=>
             d._id===id?{...d,status:"accepted"}:d
@@ -63,7 +64,7 @@ export default function ViewDonation() {
   }
   return (
     <div className="vd-page">
-      <h2 className="vd-title">View Donations</h2>
+      <h2 className="vd-title">{t('Donations')}</h2>
 
       <div className="vd-grid">
         {donations.map((d) => (
@@ -78,9 +79,9 @@ export default function ViewDonation() {
 
             <div className="vd-card-body">
               <div className="vd-info">
-                <p><b>Quantity:</b> {d.quantity}</p>
-                <p><b>Expiry:</b> {d.expiryTime}</p>
-                <p><b>Pickup Location:</b> {d.locationText}</p>
+                <p><b>{t('Quantity')}:</b> {d.quantity}</p>
+                <p><b>{t('Expiry')}:</b> {d.expiryTime}</p>
+                <p><b>{t('Pickup Location')}</b> {d.locationText}</p>
               </div>
                {d.lat !=null && d.lang !=null &&(
               <div className="vd-map">
@@ -98,16 +99,16 @@ export default function ViewDonation() {
               </div>
                 )}
                 {d.status==="pending"&& localStorage.getItem("role")==="ngo" &&(
-                  <button className="vd-accept-btn" onClick={()=>acceptDonation(d._id)}>Accept Donation</button>
+                  <button className="vd-accept-btn" onClick={()=>acceptDonation(d._id)}>{t('Accept Donation')}</button>
                 )}
                 {d.status==="accepted"&&(
-                  <p className="vd-accept-msg">Acept by NGO</p>
+                  <p className="vd-accept-msg">{t('Acept by NGO')}</p>
                 )}
                 {d.status==="assigned" &&(
-                  <button className="vd-complete-btn" onClick={()=>completeDonation(d._id)}>Mark completed</button>
+                  <button className="vd-complete-btn" onClick={()=>completeDonation(d._id)}>{t('Mark completed')}</button>
                 )}
                 {d.status==="completed" &&(
-                  <p className="vd-complete-msg">Donation completed</p>
+                  <p className="vd-complete-msg">{t('Donation completed')}</p>
                 )}
             </div>
 
