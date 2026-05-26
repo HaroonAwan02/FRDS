@@ -10,11 +10,13 @@ import notificationRoutes from "./routes/notificationRoutes.js";
 import ratingRoutes from "./routes/ratingRoutes.js";
 import requestRoutes from "./routes/requestRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import { socketHandler } from "./socket/socket.js";
 dotenv.config();
 connectDB();
 const app=express();
-app.use(cors());
+app.use(cors({
+   origin: "https://frds-9ayg.vercel.app",
+   methods: ["GET","POST"]
+}));
 app.use(express.json());
  app.post("/api/chat",async(req,res)=> {
    try {
@@ -69,8 +71,8 @@ const io = new Server(httpServer, {
     cors: { origin: "https://frds-p1l6.vercel.app",
         methods: ["GET","POST"],
     },
-});*/
+});
 socketHandler(io);
-app.set("io",io);
+app.set("io",io);*/
 const PORT = 5000;
 module.exports=app;
