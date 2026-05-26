@@ -75,6 +75,4 @@ const io = new Server(httpServer, {
 socketHandler(io);
 app.set("io",io);
 const PORT = 5000;
-httpServer.listen( PORT , () => {
-    console.log("Server runing on port", PORT);
-});
+module.exports=app;
