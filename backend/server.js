@@ -1,8 +1,6 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import http from "http";
-import { Server } from "socket.io";
 import connectDB from "./config/db.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import analyticsRoutes from "./routes/analyticsRoutes.js";
@@ -66,12 +64,12 @@ app.use("/api/ratings",ratingRoutes);
 app.use("/api/analytics",analyticsRoutes);
 app.use("/api/admin",adminRoutes);
 app.use("/reports",express.static("reports"));
-const httpServer = http.createServer(app);
+/*const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
     cors: { origin: "https://frds-p1l6.vercel.app",
         methods: ["GET","POST"],
     },
-});
+});*/
 socketHandler(io);
 app.set("io",io);
 const PORT = 5000;
