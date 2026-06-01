@@ -112,17 +112,16 @@ const Register = () => {
 
 const styles = {
   Container: {
-    minheight:"93vh",
-    height:"100vh",
-    overflow:"hidden",
+    minheight:"100dvh",
     background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bgImage}) center/cover no-repeat`,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "47px",
+    padding: "58px 15px",
+    boxSizing:"border-box"
   },
   FormWrapper: {
-    Position: "relative", // 🔑 REQUIRED FOR POPUP
+    position: "relative", // 🔑 REQUIRED FOR POPUP
     width: "100%",
     maxWidth: "470px",
   },
@@ -130,19 +129,22 @@ const styles = {
   Form: {
     background: "rgba(255,255,255,0.1)",
     backdropFilter: "blur(15px)",
-    padding: "40px",
+    padding: "30px",
     borderRadius: "20px",
     display: "flex",
     flexDirection: "column",
     boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
     animation: "fadeIn 0.8s ease",
     width: "100%",
-    minWidth: "500px",
+    maxWidth: "550px",
+    boxSizing:"border-box"
   },
 
   Title: { textAlign: "center", color: "#fff", marginBottom: "25px" },
 
   Input: {
+    width:"100%",
+    boxSizing:"border-box",
     marginBottom: "15px",
     padding: "12px",
     borderRadius: "10px",
@@ -154,7 +156,7 @@ const styles = {
   },
 
   Button: {
-    Padding: "12px",
+    padding: "12px",
     height:"40px",
     borderRadius: "10px",
     border: "none",

@@ -1,6 +1,8 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import http from "http";
+import { Server } from "socket.io";
 import connectDB from "./config/db.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import analyticsRoutes from "./routes/analyticsRoutes.js";
@@ -10,13 +12,11 @@ import notificationRoutes from "./routes/notificationRoutes.js";
 import ratingRoutes from "./routes/ratingRoutes.js";
 import requestRoutes from "./routes/requestRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import { socketHandler } from "./socket/socket.js";
 dotenv.config();
 connectDB();
 const app=express();
-app.use(cors({
-   origin: "https://frds-9ayg.vercel.app",
-   methods: ["GET","POST"]
-}));
+app.use(cors());
 app.use(express.json());
  app.post("/api/chat",async(req,res)=> {
    try {
@@ -26,22 +26,20 @@ app.use(express.json());
          method:"POST",
          headers:{
             "Content-Type":"application/json",
-            "Authorization":"Bearer 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",
+            "Authorization":"Bearer REDACTED",
            
          },
          body:JSON.stringify({
             model:"llama-3.1-8b-instant",
             messages:[
                {
-                  role:"user",
-                  content:`Your are FRDS Bot, a helpul assistant for FRDS - Food Rescue &  Donation System
-                  Rules for your
-                  1. Answer about food donation,food pickup,NGOs,volunteers,Needy people  and food waste in pakistan
-                  2. if user ask that are not related to frds then politely say: "I can answer about FRDS"
-                  3. if donor want to donate food then say:"Register as donor then in Dashboard click on donate and click on Donations to view your Donations"
-                  4. if some need food then say:"Register as needy selecet NGO and then request for food wait untill request approved from NGO"
-                  5. if some want to register as NGO the say:"Register as NGO and then NGO Dashboard you can see Donations,Volunteers,Needy Requests etc".
-                  6. FRDS ka vision to save extra Food and deliver it to needy.`
+                  role:"system",
+                  content:`You are frds(food rescue and donation system) Bot, a helpul assistant for FRDS and Ans about food donations,pickup,NGOs,volunteer,needy and  food waste in Pakistan
+                  Rules:
+                 1: After Hi hello if question is not related to frds then ans: "Sorry! i can only answer about frds".
+                 2: give answer short and to the point.
+                 3: if user ask "donate","pickup","volunteer", then answer step by step.
+                 4: Dont give a wrong answer if you dont know the answer of user ask question then say "sorry i will check it and the answer you.`
                }
             ]
          }),
@@ -66,13 +64,15 @@ app.use("/api/ratings",ratingRoutes);
 app.use("/api/analytics",analyticsRoutes);
 app.use("/api/admin",adminRoutes);
 app.use("/reports",express.static("reports"));
-/*const httpServer = http.createServer(app);
+const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
     cors: { origin: "https://frds-p1l6.vercel.app",
         methods: ["GET","POST"],
     },
 });
 socketHandler(io);
-app.set("io",io);*/
+app.set("io",io);
 const PORT = 5000;
-module.exports=app;
+httpServer.listen( PORT , () => {
+    console.log("Server runing on port", PORT);
+});

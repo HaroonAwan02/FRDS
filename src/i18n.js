@@ -184,7 +184,7 @@ const resources = {
       "Welcome Donor":"ڈونر کو خوش آمدید",
       "Logout":"لاگ آؤٹ",
       "Dashboard":"ڈیش بورڈ",
-      " Donate":" عطیہ کریں۔",
+      "Donate":"عطیہ کریں۔",
       "Pickup Address":"اٹھانے کا پتہ",
       "Expiry Time":"میعاد ختم ہونے کا وقت",
       "Expiry":"میعاد ختم",

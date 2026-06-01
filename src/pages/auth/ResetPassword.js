@@ -13,7 +13,8 @@ function ResetPassword(){
             setMessage("Password do not match");
             return;
         }
-        const res=await fetch (`http://localhost:5000/api/users/reset-password/${token}`,{
+        try {
+        const res=await fetch (`http://192.168.100.8:5000/api/users/reset-password/${token}`,{
             method:"PUT",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({password})
@@ -25,6 +26,9 @@ function ResetPassword(){
         }else {
             setMessage(data.message);
         }
+    } catch (err) {
+        console.error("unable to conect");
+    }
     };
     return (
         <div className="reset-container">

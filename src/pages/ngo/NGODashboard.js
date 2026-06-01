@@ -28,13 +28,11 @@ const NGODashboard = () => {
       console.log("event recieved",event,args);
     });
     const ngo = localStorage.getItem("ngo");
-    console.log("ngo from storage",ngo);
     if(!ngo){
       console.error("ngo not found");
       return;
     }
     fetch(`http://localhost:5000/api/users/volunteers/${ngo.toLowerCase()}`).then(res=>res.json()).then(data=>{
-      console.log("volunteer reicded",data);
       setVolunteers(data);
       fetch ("http://localhost:5000/api/requests").then(res=>res.json()).then(data=>{setNeedyRequests(data);
 
