@@ -18,6 +18,9 @@ connectDB();
 const app=express();
 app.use(cors());
 app.use(express.json());
+app.get('/' , (req,res) => {
+   res.json({status: 'FRDS backend running',time: new Date()});
+});
  app.post("/api/chat",async(req,res)=> {
    try {
      const {message}=req.body;
