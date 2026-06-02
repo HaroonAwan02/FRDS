@@ -26,7 +26,7 @@ const FoodRescueLanding = () => {
     {text:"Hi Ask me about food donation!", sender:"bot"}
   ]);;
   useEffect(()=>{
-    fetch("http://localhost:5000/api/admin/reports").then(res=>res.json()).then(data=>setReports(data));
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/reports`).then(res=>res.json()).then(data=>setReports(data));
   },[]);
   const handleSend=async()=> {
     if(!input.trim()) return;
@@ -62,7 +62,7 @@ const FoodRescueLanding = () => {
       }
   };
   const handleDownload=async()=> {
-    const response = await fetch("http://localhost:5000/api/admin/report");
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/report`);
     const blob=await response.blob();
     const url=window.URL.createObjectURL(blob);
     const a=document.createElement("a");
