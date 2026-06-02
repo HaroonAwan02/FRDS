@@ -26,7 +26,7 @@ app.use(express.json());
          method:"POST",
          headers:{
             "Content-Type":"application/json",
-            "Authorization":"Bearer REDACTED",
+            "Authorization":`Bearer ${process.env.GROQ_API_KEY}`,
            
          },
          body:JSON.stringify({
