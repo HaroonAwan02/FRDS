@@ -1,5 +1,7 @@
+//eslint-disable-next-line import/first,import/order
+/*import dotenv from 'dotenv';*/
 import cors from "cors";
-import dotenv from "dotenv";
+import 'dotenv/config';
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
@@ -13,10 +15,14 @@ import ratingRoutes from "./routes/ratingRoutes.js";
 import requestRoutes from "./routes/requestRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { socketHandler } from "./socket/socket.js";
-dotenv.config();
+/*dotenv.config();*/
 connectDB();
 const app=express();
-app.use(cors());
+/*app.use(cors());*/
+app.use(cors({
+   origin: ["https://frds-sfn3.vercel.app" , "http://localhost:3000"],
+   credentials: true
+}));
 app.use(express.json());
 app.get('/' , (req,res) => {
    res.json({status: 'FRDS backend running',time: new Date()});
@@ -69,8 +75,10 @@ app.use("/api/admin",adminRoutes);
 app.use("/reports",express.static("reports"));
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
-    cors: { origin: "https://frds-p1l6.vercel.app",
+    cors: { 
+      origin: ["https://frds-sfn3.vercel.app", "http://localhost:3000"],
         methods: ["GET","POST"],
+        credentials: true
     },
 });
 socketHandler(io);
