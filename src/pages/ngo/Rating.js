@@ -11,7 +11,7 @@ export default function RateDonor() {
   const [open, setOpen] = useState(false);
   const [donors,setDonors]=useState([]);
    useEffect(()=>{
-      fetch("http://localhost:5000/api/users/donors").then(res=>res.json()).then(data=>{
+      fetch("https://frds.onrender.com/api/users/donors").then(res=>res.json()).then(data=>{
         setDonors(data);
       }).catch(err=>console.log(err));
     },[]);
@@ -20,7 +20,7 @@ export default function RateDonor() {
   );
     const handleSubmit=async()=>{
       try {
-        const res=await fetch("http://localhost:5000/api/ratings",{
+        const res=await fetch("https://frds.onrender.com/api/ratings",{
           method:"POST",
           headers:{
             "Content-Type":"application/json",

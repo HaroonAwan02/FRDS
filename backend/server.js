@@ -1,7 +1,5 @@
-//eslint-disable-next-line import/first,import/order
-/*import dotenv from 'dotenv';*/
 import cors from "cors";
-import 'dotenv/config';
+import dotenv from "dotenv";
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
@@ -15,18 +13,19 @@ import ratingRoutes from "./routes/ratingRoutes.js";
 import requestRoutes from "./routes/requestRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { socketHandler } from "./socket/socket.js";
-/*dotenv.config();*/
+dotenv.config();
 connectDB();
 const app=express();
 /*app.use(cors());*/
-app.use(cors({
-   origin: ["https://frds-sfn3.vercel.app" , "http://localhost:3000"],
-   credentials: true
-}));
+app.use(
+   cors({
+      origin: [
+         "http://localhost:3000",
+         "https://frds-sfn3.vercel.app"
+      ]
+   })
+)
 app.use(express.json());
-app.get('/' , (req,res) => {
-   res.json({status: 'FRDS backend running',time: new Date()});
-});
  app.post("/api/chat",async(req,res)=> {
    try {
      const {message}=req.body;
@@ -43,14 +42,15 @@ app.get('/' , (req,res) => {
             messages:[
                {
                   role:"system",
-                  content:`You are frds(food rescue and donation system) Bot, a helpul assistant for FRDS and Ans about food donations,pickup,NGOs,volunteer,needy and  food waste in Pakistan
-                  Rules:
-                 1: After Hi hello if question is not related to frds then ans: "Sorry! i can only answer about frds".
-                 2: give answer short and to the point.
-                 3: if user ask "donate","pickup","volunteer", then answer step by step.
-                 4: Dont give a wrong answer if you dont know the answer of user ask question then say "sorry i will check it and the answer you.`
+                  content:`You are frds.ans only about food donation/pickup/NGOs/volunteers/food waste in Pakistan.
+                  No greeting,no intro,no "i am bot".Give direct step by step answer only.`
+               },
+               {
+                  role:"user",
+                  content:message
                }
-            ]
+            ],
+            temperature:0.1
          }),
       })
       const data=await response.json();
@@ -75,10 +75,12 @@ app.use("/api/admin",adminRoutes);
 app.use("/reports",express.static("reports"));
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
-    cors: { 
-      origin: ["https://frds-sfn3.vercel.app", "http://localhost:3000"],
-        methods: ["GET","POST"],
-        credentials: true
+    cors: { origin: [
+      "http://localhost:3000",
+      "https://frds-sfn3.vercel.app/", 
+    ],
+     methods: ["GET","POST"],
+     credentials:true
     },
 });
 socketHandler(io);

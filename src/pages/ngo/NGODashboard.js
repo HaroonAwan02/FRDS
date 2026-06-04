@@ -32,16 +32,16 @@ const NGODashboard = () => {
       console.error("ngo not found");
       return;
     }
-    fetch(`http://localhost:5000/api/users/volunteers/${ngo.toLowerCase()}`).then(res=>res.json()).then(data=>{
+    fetch(`https://frds.onrender.com/api/users/volunteers/${ngo.toLowerCase()}`).then(res=>res.json()).then(data=>{
       setVolunteers(data);
-      fetch ("http://localhost:5000/api/requests").then(res=>res.json()).then(data=>{setNeedyRequests(data);
+      fetch ("https://frds.onrender.com/api/requests").then(res=>res.json()).then(data=>{setNeedyRequests(data);
 
       });
   });
     const city=localStorage.getItem("city");
     if(city){
       const formattedCity=city.trim().toLowerCase();
-      fetch(`http://localhost:5000/api/notifications/${formattedCity}`)
+      fetch(`https://frds.onrender.com/api/notifications/${formattedCity}`)
       .then(res=>res.json())
       .then(data=>{
         if(Array.isArray(data)){
@@ -50,7 +50,7 @@ const NGODashboard = () => {
         setNotifications([]);
         }
       });
-      fetch("http://localhost:5000/api/donations").then(res=>res.json()).then(data=>setDonations(data));
+      fetch("https://frds.onrender.com/api/donations").then(res=>res.json()).then(data=>setDonations(data));
       /*console.log("joiinig room",formattedCity);*/
       socket.emit("joinCity",formattedCity);
     }
@@ -65,7 +65,7 @@ const NGODashboard = () => {
       if(accepted){
         setSelectedDonationStatus(accepted.status);
       }*/
-      fetch("http://localhost:5000/api/requests")
+      fetch("https://frds.onrender.com/api/requests")
     .then(res=>res.json()).then(data=>setNeedyRequests(data));
   });
   return ()=>{
@@ -100,7 +100,7 @@ const NGODashboard = () => {
     try {
       console.log("sending",{donationId,volunteerId});
       console.log("selectedDonation",selectedDonation);
-      const res= await fetch("http://localhost:5000/api/donations/assign",{
+      const res= await fetch("https://frds.onrender.com/api/donations/assign",{
         method:"PUT",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({donationId,volunteerId})
@@ -127,7 +127,7 @@ const NGODashboard = () => {
     setShow(prev=>!prev);
     if(!show && city){
       try{
-        await fetch(`http://localhost:5000/api/notifications/mark-read/${city}`,{
+        await fetch(`https://frds.onrender.com/api/notifications/mark-read/${city}`,{
         method:"PUT"
       });
       setNotifications(prev=>prev.map(n=>({...n,isRead:true}))
@@ -138,7 +138,7 @@ const NGODashboard = () => {
     }
   };
   const approveRequest=async(id)=>{
-    await fetch(`http://localhost:5000/api/requests/approve/${id}`,{
+    await fetch(`https://frds.onrender.com/api/requests/approve/${id}`,{
       method:"PUT"
     });
     setNeedyRequests(prev=>prev.map(r=>r._id===id?{...r,status:"approved"}:r

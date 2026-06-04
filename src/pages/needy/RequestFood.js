@@ -27,7 +27,7 @@ const handleSubmit=async(e)=>{
 e.preventDefault();
 try {
   const userId=localStorage.getItem("userId");
-  const res=await fetch("http://localhost:5000/api/requests",{
+  const res=await fetch("https://frds.onrender.com/api/requests",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -53,7 +53,7 @@ body:JSON.stringify({
 };
 const loadMyRequests=async()=>{
   const userId=localStorage.getItem("userId");
-  const res=await fetch(`http://localhost:5000/api/requests/${userId}`);
+  const res=await fetch(`https://frds.onrender.com/api/requests/${userId}`);
   const data = await res.json();
   setRequests(data);
  }

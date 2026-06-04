@@ -26,7 +26,7 @@ const FoodRescueLanding = () => {
     {text:"Hi Ask me about food donation!", sender:"bot"}
   ]);;
   useEffect(()=>{
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/reports`).then(res=>res.json()).then(data=>setReports(data));
+    fetch("https://frds.onrender.com/api/admin/reports").then(res=>res.json()).then(data=>setReports(data));
   },[]);
   const handleSend=async()=> {
     if(!input.trim()) return;
@@ -36,14 +36,13 @@ const FoodRescueLanding = () => {
       setLoading(true);
       try {
          console.log("sending",input);
-         const res=await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chat`, {
+         const res=await fetch("https://frds.onrender.com/api/chat", {
       method: "POST",
       headers:{
         "Content-Type":"application/json",
       },
       body: JSON.stringify({message:input}),
      });
-        
         console.log("status",res.status);
       if(!res.ok){
         throw new Error ("server error");
@@ -62,7 +61,7 @@ const FoodRescueLanding = () => {
       }
   };
   const handleDownload=async()=> {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/report`);
+    const response = await fetch("https://onrender.com/api/admin/report");
     const blob=await response.blob();
     const url=window.URL.createObjectURL(blob);
     const a=document.createElement("a");

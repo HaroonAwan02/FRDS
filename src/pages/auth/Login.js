@@ -16,7 +16,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
+      const response = await fetch("https://frds.onrender.com/api/users/login", {
         method: "POST",
         headers: { "Content-Type":"application/json"},
         body: JSON.stringify({

@@ -20,8 +20,8 @@ const [donation,setDonation]=useState(null);
 const userId=localStorage.getItem("userId");
 useEffect(()=>{
   const fetchData=()=>{
-  fetch(`http://localhost:5000/api/users/volunteer/me/${userId}`).then((res)=>res.json()).then((data)=>setVolunteer(data));
-  fetch(`http://localhost:5000/api/donations/volunteer/${userId}`).then((res)=>res.json()).then((data)=>setDonation(data));
+  fetch(`https://frds.onrender.com/api/users/volunteer/me/${userId}`).then((res)=>res.json()).then((data)=>setVolunteer(data));
+  fetch(`https://frds.onrender.com/api/donations/volunteer/${userId}`).then((res)=>res.json()).then((data)=>setDonation(data));
   };
   fetchData();
   const interval=setInterval(fetchData,3000);

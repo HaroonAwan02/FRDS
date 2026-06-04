@@ -41,7 +41,7 @@ export default function DonorDashboard() {
     const fetchDonations=async()=>{
       try{
         const user= JSON.parse(localStorage.getItem("user"));
-        const res = await fetch(`http://localhost:5000/api/donations/my-donations/${user._id}`
+        const res = await fetch(`https://frds.onrender.com/api/donations/my-donations/${user._id}`
 
         );
         const data=await res.json();
@@ -53,7 +53,7 @@ export default function DonorDashboard() {
     const fetchReviews=async()=> {
       try {
         const user=JSON.parse(localStorage.getItem("user"));
-        const res=await fetch(`http://localhost:5000/api/ratings/${user._id}`);
+        const res=await fetch(`https://frds.onrender.com/api/ratings/${user._id}`);
         const data=await res.json();
         setReviews(data.ratings||[]);
          /*setTotalPages(data.TotalPages|| 1);*/

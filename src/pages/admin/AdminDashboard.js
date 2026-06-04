@@ -53,10 +53,10 @@ export default function AdminDashboard() {
     if(i18n.language!=="en") {
       i18n.changeLanguage("en");
     }
-    fetch("http://localhost:5000/api/admin/stats").then(res=>res.json()).then(data=>setStats(data));
-    fetch("http://localhost:5000/api/admin/analytics").then(res=>res.json()).then(data=>setChartData(data));
-    fetch("http://localhost:5000/api/admin/monthly").then(res=>res.json()).then(data=>setMonthlyData(data));
-    fetch("http://localhost:5000/api/users").then(res=>res.json()).then(data=>{if(Array.isArray(data)){
+    fetch("https://frds.onrender.com/api/admin/stats").then(res=>res.json()).then(data=>setStats(data));
+    fetch("https://frds.onrender.com/api/admin/analytics").then(res=>res.json()).then(data=>setChartData(data));
+    fetch("https://frds.onrender.com/api/admin/monthly").then(res=>res.json()).then(data=>setMonthlyData(data));
+    fetch("https://frds.onrender.com/api/users").then(res=>res.json()).then(data=>{if(Array.isArray(data)){
       setUsers(data)
     }else {
       setUsers(data.users||[]);
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
    }
    const handleReport=async(id)=>{
     try {
-     const res= await fetch(`http://localhost:5000/api/users/report/${id}`,{
+     const res= await fetch(`https://frds.onrender.com/api/users/report/${id}`,{
         method: "PUT",
       });
        const updatedUser=await res.json();
@@ -83,7 +83,7 @@ export default function AdminDashboard() {
     }
    }
    const handleUnblock=async(id)=>{
-    const res= await fetch(`http://localhost:5000/api/users/unreport/${id}`,{
+    const res= await fetch(`https://frds.onrender.com/api/users/unreport/${id}`,{
       method: "PUT",
     });
     const updatedUser= await res.json();
