@@ -33,7 +33,7 @@ const [volunteerData,setVolunteerData]=useState({});
    },[]);
     const fetchData=async()=>{
       try {
-       const res=await fetch("http://localhost:5000/api/donations");
+       const res=await fetch("https://frds.onrender.com/api/donations");
        const raw=await res.json();
         console.log("analytics api responses",raw);
         const data=Array.isArray(raw)?raw:raw.data||[];

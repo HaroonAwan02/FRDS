@@ -126,7 +126,7 @@ export default function AdminDashboard() {
           </div>
           <h3>Welcome back, Admin</h3>
           <button className="generate-report-btn" onClick={()=>{
-          window.open("http://localhost:5000/api/admin/report", "_blank");
+          window.open("https://frds.onrender.com/api/admin/report", "_blank");
         }}>Generate Report</button>
         </div>
 

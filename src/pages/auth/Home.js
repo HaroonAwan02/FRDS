@@ -61,7 +61,7 @@ const FoodRescueLanding = () => {
       }
   };
   const handleDownload=async()=> {
-    const response = await fetch("https://onrender.com/api/admin/report");
+    const response = await fetch("https://frds.onrender.com/api/admin/report");
     const blob=await response.blob();
     const url=window.URL.createObjectURL(blob);
     const a=document.createElement("a");

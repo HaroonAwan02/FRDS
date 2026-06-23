@@ -46,7 +46,7 @@ export default function ViewDonation() {
     }
     const completeDonation=async(id)=>{
       try{
-        const res=await fetch(`https://frds.onrender.com/api/donations/completed/${id}`,{
+        const res=await fetch(`http://localhost:5000/api/donations/completed/${id}`,{
         method:"PUT"
       });
       const data=await res.json();

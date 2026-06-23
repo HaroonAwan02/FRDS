@@ -16,15 +16,15 @@ import { socketHandler } from "./socket/socket.js";
 dotenv.config();
 connectDB();
 const app=express();
-/*app.use(cors());*/
 app.use(
    cors({
       origin: [
-         "http://localhost:3000",
-         "https://frds-sfn3.vercel.app"
-      ]
+         "https://localhost:3000",
+         "https://frds.p1l6.vercel.app"
+      ],
+      credentials: true,
    })
-)
+);
 app.use(express.json());
  app.post("/api/chat",async(req,res)=> {
    try {
@@ -34,7 +34,7 @@ app.use(express.json());
          method:"POST",
          headers:{
             "Content-Type":"application/json",
-            "Authorization":`Bearer ${process.env.GROQ_API_KEY}`,
+            "Authorization":`Bearer ${GROQ_API_KEY}`,
            
          },
          body:JSON.stringify({
@@ -75,12 +75,8 @@ app.use("/api/admin",adminRoutes);
 app.use("/reports",express.static("reports"));
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
-    cors: { origin: [
-      "http://localhost:3000",
-      "https://frds-sfn3.vercel.app/", 
-    ],
-     methods: ["GET","POST"],
-     credentials:true
+    cors: { origin: "https://frds-p1l6.vercel.app",
+        methods: ["GET","POST"],
     },
 });
 socketHandler(io);
