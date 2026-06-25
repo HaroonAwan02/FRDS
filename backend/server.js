@@ -54,7 +54,9 @@ app.use(express.json());
          }),
       })
       const data=await response.json();
+       console.log("groq status:",response.status);
       console.log("full groq ",data);
+      console.log("groq data dump:",JSON.stringify(data));
       const reply=data?.choices?.[0]?.message?.content ||"No response from ai";
       res.json({reply});
    }catch(error){
