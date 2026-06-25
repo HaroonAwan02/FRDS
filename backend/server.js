@@ -15,6 +15,15 @@ import userRoutes from "./routes/userRoutes.js";
 import { socketHandler } from "./socket/socket.js";
 dotenv.config();
 connectDB();
+const connectDB=async()=> {
+   try {
+      await mongoose.connect(process.env.MONGO_URL);
+      console.log("mongo conected");
+   }catch (error) {
+      console.log("mongoDb connection error",error);
+      process.exit(1);
+   }
+};
 const app=express();
 app.use(
    cors({
