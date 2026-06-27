@@ -19,8 +19,8 @@ const app=express();
 app.use(
    cors({
       origin: [
-         "https://localhost:3000",
-         "https://frds.p1l6.vercel.app"
+         "https://frds-blush.vercel.app",
+         "https://frds.m0p8m9794-haroons-projects-211be97c.vercel.app"
       ],
       credentials: true,
    })
