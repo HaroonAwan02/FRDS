@@ -1,10 +1,10 @@
 import axios from "axios";
 export const createDonation = async (data) => {
     return await axios.post(
-        "http://localhost:5000/api/donations",data
+        "https://frds.onrender.com/api/donations",data
     );
 };
-const API="http://localhost:5000/api/donations";
+const API="https://frds.onrender.com/api/donations";
 export const getDonations =  () => {
     return  axios.get(API);
 };
