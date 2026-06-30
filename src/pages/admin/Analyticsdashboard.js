@@ -175,11 +175,12 @@ const [volunteerData,setVolunteerData]=useState({});
 
 const styles = {
   Page: {
-    padding:"30px",
+    padding:"20px",
     display:"flex",
     flexDirection:"column",
-    gap:"24px",
+    gap:"20px",
     background:"#d0e5faff",
+    minHeight:"100vh"
   },
 
   Navbar: {
@@ -201,10 +202,12 @@ const styles = {
     display:"flex",
     gap:"24px",
     flexWrap:"wrap",
+    justifyContent:"space-between"
   },
 
   card: {
-    width:"48%",
+    flex:"1 1 calc(50% - 20px)",
+    minWidth:"300px",
     background:"#ffffff",
     borderRadius:"14px",
     padding:"18px",
@@ -219,10 +222,11 @@ const styles = {
   },
 
   chartBox: {
-    height: "240px",
+    height: "220px",
   },
   pietBox: {
-    width:"40%",
+    width:"100%",
+    height:"220px",
     display:"flex",
     alignItems:"center",
     justifyContent:"center",
