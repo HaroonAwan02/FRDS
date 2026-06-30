@@ -112,12 +112,12 @@ const Register = () => {
 
 const styles = {
   Container: {
-    minheight:"100dvh",
+    minHeight:"100vh",
     background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bgImage}) center/cover no-repeat`,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "58px 15px",
+    padding: "20px 15px",
     boxSizing:"border-box"
   },
   FormWrapper: {
@@ -129,24 +129,24 @@ const styles = {
   Form: {
     background: "rgba(255,255,255,0.1)",
     backdropFilter: "blur(15px)",
-    padding: "30px",
+    padding: "20px 25px",
     borderRadius: "20px",
     display: "flex",
     flexDirection: "column",
     boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
     animation: "fadeIn 0.8s ease",
     width: "100%",
-    maxWidth: "550px",
+    maxWidth: "450px",
     boxSizing:"border-box"
   },
 
-  Title: { textAlign: "center", color: "#fff", marginBottom: "25px" },
+  Title: { textAlign: "center", color: "#fff", marginBottom: "10px" },
 
   Input: {
     width:"100%",
     boxSizing:"border-box",
-    marginBottom: "15px",
-    padding: "12px",
+    marginBottom: "10px",
+    padding: "10px",
     borderRadius: "10px",
     border: "none",
     outline: "none",
@@ -169,8 +169,7 @@ const styles = {
    textAlign:"center",
    color:"#ddd",
    fontSize:"18px",
-   marginBottom:"25px",
-   marginTop:"-10px"
+   marginBottom:"15px",
    },
   Link: { marginTop: "15px", textAlign: "center", color: "#fff" },
 };
