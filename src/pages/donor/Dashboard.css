@@ -17,6 +17,7 @@
 }
 .sidebar {
   width: 230px;
+  min-height: 100vh;
   background: linear-gradient(180deg, #4f46e5, #4338ca);
   padding: 20px;
 }
@@ -272,13 +273,15 @@ tbody tr {
 }
 .fd-card {
   background: #ffffff; 
-  Max-width: 500px;
-  height:830px;
+  max-width: 500px;
+  height:auto;
+  max-height: 92vh;
+  overflow-y: auto;
   width: 100%;
   border-radius: 16px;
   Box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  padding: 30px;
-  Transition: all 0.3s ease;
+  padding: 24px;
+  transition: all 0.3s ease;
 }
 .fd-header h1 {
   Font-size: 26px;
@@ -405,15 +408,18 @@ Input:-webkit-autofill {
   }
 }
 @media(max-width:768px) {
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
   .fd-container {
-    padding: 12px;
+    padding: 10px;
     align-items: flex-start;
   }
   .fd-card {
     width: 100%;
     max-width: 100%;
-    height: auto;
-    padding: 20px;
+    max-height: 100vh;
+    padding: 16px;
     border-radius: 14px;
   }
   .fd-header h1 {
