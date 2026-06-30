@@ -240,6 +240,12 @@ tbody tr {
   justify-content: center;
   z-index: 2000;
 }
+.fd-card .map-container,.fd-card [class*="leaflet-container"] {
+  height:180px !important;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
 .fd-map-box {
   background-color: #fff;
   width:90%;
@@ -280,15 +286,26 @@ tbody tr {
 }
 .fd-card {
   background: #ffffff; 
-  max-width: 550px;
+  max-width: 450px;
   height:auto;
   max-height: none;
   overflow-y: auto;
   width: 100%;
   border-radius: 16px;
   Box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  padding: 32px;
+  padding: 28px 24px;
   transition: all 0.3s ease;
+}
+.fd-card h2 {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+.fd-card p{
+text-align: center;
+color:#666;
+font-size: 14px;
+margin-bottom: 20px;
 }
 .fd-header h1 {
   Font-size: 26px;
@@ -311,9 +328,11 @@ tbody tr {
   Margin-bottom: 6px;
 }
 .fd-form input,
-.fd-form select {
-  Width: 100%;
-  Padding: 12px;
+.fd-form select, .fd-card textarea{
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 5px;
+  margin-bottom: 14px;
   Font-size: 14px;
   Border-radius: 10px;
   Border: 1px solid #cbd5e1;
@@ -337,9 +356,9 @@ Input:-webkit-autofill {
   Background-color: #0e0d0d !important;
 }
 .fd-form button {
-  Width: 100%;
-  Padding: 14px;
-  Margin-top: 22px;
+  width: 100%;
+  padding: 14px;
+  margin-top: 22px;
   Background: linear-gradient(135deg, #2563eb, #3b82f6);
   Color: white;
   Font-size: 16px;
@@ -349,9 +368,16 @@ Input:-webkit-autofill {
   Cursor: pointer;
   Transition: all 0.3s ease;
 }
-
 .fd-form button:hover {
   Opacity: 0.95;
+}
+.fd-card button[type="submit"],.fd-submit-btn {
+  width:100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor:pointer;
 }
 .overlay {
   position: fixed;
@@ -462,11 +488,18 @@ Input:-webkit-autofill {
 }
 @media(max-width:480px) {
   .fd-container {
-    padding: 8px;
+    padding: 15px 12px;
+    align-items:flex-start;
   }
   .fd-card {
-    padding: 16px;
+    padding:20px 16px;
+    max-width: 100%;
     border-radius: 12px;
+  }
+  .fd-card input,.fd-card select,.fd-card textarea {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
   }
   .fd-header h1 {
     font-size: 20px;
@@ -489,8 +522,8 @@ Input:-webkit-autofill {
   .fd-map {
     height: 220px;
   }
-  .leaflet-container {
-    height: 200px !important;
-     width:100% !important;
+  .fd-card .map-container,.fd-card [class*="leaflet-container"] {
+    height: 140px !important;
+     margin-bottom: 12px;
   }
 }
