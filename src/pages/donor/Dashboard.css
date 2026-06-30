@@ -225,6 +225,12 @@ tbody tr {
   color:#475569;
 }
 /* donation formcss*/
+.fd-form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap:8px;
+}
 .fd-map-overlay {
   position: fixed;
   inset:0;
@@ -263,24 +269,25 @@ tbody tr {
   cursor:pointer;
 }
 .fd-container {
-  Min-height: 100vh;
+  min-height: 100vh;
+  width:100%;
   background: #f4f7fa; 
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
   Font-family: ‘Segoe UI’, Tahoma, Geneva, Verdana, sans-serif;
 }
 .fd-card {
   background: #ffffff; 
-  max-width: 500px;
+  max-width: 550px;
   height:auto;
-  max-height: 92vh;
+  max-height: none;
   overflow-y: auto;
   width: 100%;
   border-radius: 16px;
   Box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  padding: 24px;
+  padding: 32px;
   transition: all 0.3s ease;
 }
 .fd-header h1 {
@@ -412,15 +419,13 @@ Input:-webkit-autofill {
       grid-template-columns: repeat(2, 1fr);
     }
   .fd-container {
-    padding: 10px;
+    padding: 20px 16px;
     align-items: flex-start;
   }
   .fd-card {
-    width: 100%;
-    max-width: 100%;
-    max-height: 100vh;
-    padding: 16px;
+    padding: 24px 16px;
     border-radius: 14px;
+    margin-bottom: 20px;
   }
   .fd-header h1 {
     font-size: 22px;
