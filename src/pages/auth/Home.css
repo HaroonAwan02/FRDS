@@ -82,7 +82,7 @@
   position: relative;
   z-index: 10;
   max-width: 850px;
-  padding: 60px 40px;
+  padding: 40px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,12 +109,12 @@
 }
 
 .headline {
-   font-size: 4rem; /* Larger and Bolder */
+   font-size: 3.2rem; /* Larger and Bolder */
    font-weight: 800;
   color: #f6f7f8;
    line-height: 1.1;
   Letter-spacing: -0.03em; /* Tight letter spacing for modern look */
-  margin: 0 0 24px 0;
+  margin: 16px;
 }
 
 .subheadline {
@@ -127,9 +127,9 @@
 
 /* --- Premium Buttons --- */
 .button-group {
-  Display: flex;
-  Gap: 20px;
-  margin-bottom: 80px;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .btn {
@@ -419,7 +419,9 @@
 @media (max-width: 768px) {
 
   .container {
-  padding: 15px;
+  padding: 10px;
+  height:100vh;
+  overflow: hidden;
   }
 
   .download-report {
@@ -434,11 +436,8 @@
     gap:10px;
   }
   .content-wrapper {
-    width: 95%;
-    max-width: 450px;
-    margin: 100px auto 20px;
-    padding: 25px 18px;
-    border-radius: 18px;
+   padding: 20px 15px;
+   margin-top: 10px;
   }
   .badge {
      font-size: 11px;
@@ -461,8 +460,7 @@
   }
 
   .button-group {
-    width: 100%;
-    flex-direction: column;
+   margin-bottom: 20px;
   }
 
   .btn {
