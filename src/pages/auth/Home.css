@@ -12,13 +12,14 @@
 }
 
 .container {
-  Min-height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background-image: url("../../assets/images/nature2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  Position: relative;
-  Display: flex;
+  position: relative;
+  padding: 20px;
+  display: flex;
   align-items: center;
   justify-content: center;
    font-family: ‘Inter’, system-ui, -apple-system, sans-serif; /* Modern  font Stack */
@@ -81,8 +82,9 @@
 .content-wrapper {
   position: relative;
   z-index: 10;
-  max-width: 850px;
-  padding: 40px 30px;
+  max-width: 800px;
+  width:100%;
+  padding: 30px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,12 +111,12 @@
 }
 
 .headline {
-   font-size: 3.2rem; /* Larger and Bolder */
+   font-size: 4rem; /* Larger and Bolder */
    font-weight: 800;
   color: #f6f7f8;
    line-height: 1.1;
   Letter-spacing: -0.03em; /* Tight letter spacing for modern look */
-  margin: 16px;
+  margin: 0 0 24px 0;
 }
 
 .subheadline {
@@ -128,8 +130,13 @@
 /* --- Premium Buttons --- */
 .button-group {
   display: flex;
-  gap: 20px;
-  margin-bottom: 40px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 25px;
 }
 
 .btn {
@@ -142,7 +149,15 @@
   Min-width: 180px;
   Border: none;
 }
-
+.button-group button, .button-group .btn {
+  flex:1;
+  max-width: 130px;
+  padding: 10px 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 8px;
+}
 .btn.btn-primary {
   background: #1bc938;
   color: white;
@@ -249,7 +264,20 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   animation: slideUp 0.3s ease-out;
 }
-
+.chatbot-window, .chatbot-container ,.chatbox {
+  position: fixed;
+  bottom:80px;
+  right:20px;
+  width:360px;
+  height:60vh;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   To { opacity: 1; transform: translateY(0); }
@@ -419,9 +447,7 @@
 @media (max-width: 768px) {
 
   .container {
-  padding: 10px;
-  height:100vh;
-  overflow: hidden;
+  padding: 15px;
   }
 
   .download-report {
@@ -436,8 +462,11 @@
     gap:10px;
   }
   .content-wrapper {
-   padding: 20px 15px;
-   margin-top: 10px;
+    width: 95%;
+    max-width: 450px;
+    margin: 100px auto 20px;
+    padding: 25px 18px;
+    border-radius: 18px;
   }
   .badge {
      font-size: 11px;
@@ -460,7 +489,8 @@
   }
 
   .button-group {
-   margin-bottom: 20px;
+    width: 100%;
+    flex-direction: column;
   }
 
   .btn {
@@ -519,16 +549,19 @@
 @media (max-width: 480px) {
 
   .container {
-    padding: 10px;
+    padding: 12px;
+    height:100vh;
+    overflow:hidden;
   }
 
   .content-wrapper {
-    padding: 22px 14px;
+    padding: 20px 16px;
+    margin: 0;
   }
 
   .headline {
-     font-size: 1.6rem;
-     line-height: 1.3;
+     font-size: 1.8rem;
+     line-height: 1.2;
   }
 
   .subheadline {
@@ -562,5 +595,13 @@
 
   .chat-footer button {
     width: 100%;
+  }
+  .chatbot-window,.chatbot-container,.chatbox {
+    width: 85vw;
+    height:380px;
+    max-height: 50vh;
+    bottom:75px;
+    right:15px;
+    border-radius: 12px;
   }
 }
