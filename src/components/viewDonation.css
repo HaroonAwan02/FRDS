@@ -1,9 +1,9 @@
 .vd-page {
-  Padding: 32px;
-  Background: #eeeeee;
-  Min-height: 100vh;
+  padding: 32px;
+  background: #eeeeee;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
-
 .vd-title {
   Font-size: 26px;
   Font-weight: 700;
@@ -12,13 +12,15 @@
   background: #374151;
   padding: 15px;
   border-radius: 20px;
+  text-align: center;
 }
 
 /* GRID */
 .vd-grid {
   Display: grid;
-  Grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  Grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   Gap: 24px;
+  width: 100%;
 }
 
 /* CARD */
@@ -26,6 +28,7 @@
   Background: #ffffff;
   Border-radius: 18px;
   Padding: 20px;
+  width:100%;
   box-shadow: 0 12px 30px rgba(65, 64, 64, 0.06);
   Transition: transform 0.2s ease;
 }
@@ -40,6 +43,8 @@
   Justify-content: space-between;
   Align-items: center;
   Margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap:10px;
 }
 
 .vd-card-header h3 {
@@ -77,12 +82,14 @@
   Display: grid;
   Grid-template-columns: 1.2fr 1fr;
   Gap: 16px;
+  width:100%;
 }
 
 .vd-info p {
   Font-size: 14px;
   Color: #374151;
   Margin-bottom: 6px;
+  word-break: break-word;
 }
 
 /* MAP */
@@ -91,6 +98,7 @@
   Border-radius: 14px;
   Overflow: hidden;
   Border: 1px solid #e5e7eb;
+  width:100%;
 }
 
 .leaflet-container {
@@ -106,14 +114,26 @@
   color:white;
   border-radius: 6px;
   cursor: pointer;
+  width:100%;
 }
 .vd-accept-btn:hover {
   background: #218838;
 }
 /* MOBILE */
 @media (max-width: 768px) {
+  .vd-page {
+    padding: 16px 12px;
+  }
+  .vd-title {
+    font-size: 20px;
+    padding: 12px;
+  }
   .vd-card-body {
     Grid-template-columns: 1fr;
+    gap:12px;
+  }
+  .vd-map {
+    height:140px;
   }
 }
 
