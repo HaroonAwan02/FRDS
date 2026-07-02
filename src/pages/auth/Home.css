@@ -10,20 +10,19 @@
   --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
-
+html,body, .container {
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100ch;
+  overflow: hidden;
+  box-sizing: border-box;
+}
 .container {
-  min-height: 100vh;
-  width: 100%;
-  background-image: url("../../assets/images/nature2.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  padding: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
-   font-family: ‘Inter’, system-ui, -apple-system, sans-serif; /* Modern  font Stack */
-  Overflow: hidden;
+  align-items: center;
+  position: relative;
 }
 
 .bg-glow-top {
@@ -82,9 +81,8 @@
 .content-wrapper {
   position: relative;
   z-index: 10;
-  max-width: 800px;
-  width:100%;
-  padding: 30px 24px;
+  max-width: 500px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,7 +93,25 @@
   border-radius: 24px;
   border:1px solid rgba(255,255,255,0.2)
 }
-
+.top-buttons-container,div:has(>button:contains("Download Report")){
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform: translateX(-50%);
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  gap:8px !important;
+  width: 95% !important;
+  max-width: 400px;
+  z-index: 100px;
+}
+.top-buttons-container button,.top-buttons-container a {
+  padding: 6px 10px;
+  font-size: 11px;
+  white-space: nowrap;
+  border-radius: 20px;
+}
 .badge {
   Display: inline-flex;
   align-items: center;
@@ -129,14 +145,20 @@
 
 /* --- Premium Buttons --- */
 .button-group {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
   justify-content: center;
-  gap: 10px;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 25px;
+  gap:12px;
+  width:100%;
+  margin:20px 0;
+}
+.button-group button,.button-group .btn {
+  flex: 1 !important;
+  padding: 12px 8px !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
+  border-radius: 8px;
 }
 
 .btn {
@@ -149,15 +171,7 @@
   Min-width: 180px;
   Border: none;
 }
-.button-group button, .button-group .btn {
-  flex:1;
-  max-width: 130px;
-  padding: 10px 8px;
-  font-size: 14px;
-  white-space: nowrap;
-  text-align: center;
-  border-radius: 8px;
-}
+
 .btn.btn-primary {
   background: #1bc938;
   color: white;
@@ -187,7 +201,33 @@
   Gap: 40px;
   justify-content: center;
 }
-
+.icon-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:15px;
+  width: 100%;
+}
+.chatbot-window,.chatbot-container,.chatbox,[class*="chatbot"] {
+  position: fixed !important;
+  bottom: 85% !important;
+  right:20px !important;
+  width:320px !important;
+  height:380px !important;
+  max-height: 45vh !important;
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+  overflow: hidden !important;
+  z-index: 999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.chatbot-message,[class*="message-conatiner"] {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 10px;
+}
 .icon-circle {
   Background: white;
   width: 64px;
@@ -264,20 +304,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   animation: slideUp 0.3s ease-out;
 }
-.chatbot-window, .chatbot-container ,.chatbox {
-  position: fixed;
-  bottom:80px;
-  right:20px;
-  width:360px;
-  height:60vh;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  z-index: 1000;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   To { opacity: 1; transform: translateY(0); }
@@ -549,21 +576,26 @@
 @media (max-width: 480px) {
 
   .container {
-    padding: 12px;
-    height:100vh;
-    overflow:hidden;
+    padding: 10px;
   }
 
   .content-wrapper {
-    padding: 20px 16px;
-    margin: 0;
+    padding: 16px 12px;
+    width: 92%;
   }
 
   .headline {
-     font-size: 1.8rem;
-     line-height: 1.2;
+     font-size: 1.6rem;
+     line-height: 1.3;
+     margin-bottom: 8px;
   }
-
+  .chatbot-window,.chatbot-conatiner,.chat-box [class*="chatbot"]{
+    width:280px !important;
+    height:320px !important;
+    max-height: 40vh !important;
+    bottom: 70px !important;
+    right:10px !important;
+  }
   .subheadline {
      font-size: 0.88rem;
   }
@@ -595,13 +627,5 @@
 
   .chat-footer button {
     width: 100%;
-  }
-  .chatbot-window,.chatbot-container,.chatbox {
-    width: 85vw;
-    height:380px;
-    max-height: 50vh;
-    bottom:75px;
-    right:15px;
-    border-radius: 12px;
   }
 }
