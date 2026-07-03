@@ -18,10 +18,10 @@ const Notification = ({ message,type="error", onClose }) => {
     
 };
 const popup =(isSuccess)=>( {
-  position: "absolute",
+  position: "fixed",
   top: "50%",
   left: "52%",
-  transform:"translate(-50%,-50%)",
+  transform:"translateX(-50%)",
    minWidth:"280px",
    maxWidth:"90%",
    padding:"14px 20px",
@@ -31,7 +31,7 @@ const popup =(isSuccess)=>( {
    fontWight:"500",
    textAlign:"center",
    boxShadow:"0 10px 30px rgba(0,0,0,0.35)",
-   zIndex:1000,
+   zIndex:99999,
 });
 export default Notification;
 
