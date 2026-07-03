@@ -1,5 +1,9 @@
 import nodemailer from "nodemailer";
 const sendEmail = async (options) =>{
+    console.log("email_User",process.env.EMAIL_USER);
+    console.log("Email pass exisit",!!process.env.EMAIL_PASS);
+    await transporter.verify();
+    console.log("smtp connected");
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port:587,
