@@ -25,7 +25,7 @@ export const forgotPassword=async(req,res)=>{
             }
         );
         console.log("4.:user saved with token");
-        const resetUrl=`http://192.168.100.8:3000/reset-password/${resetToken}`;
+        const resetUrl=`https://frds-blush.vercel.app/reset-password/${resetToken}`;
         console.log("5.: result url",resetUrl);
         const message=`<h1>You requested a password reset</h1>
         <p>Please click on the link given below to reset your password</p>

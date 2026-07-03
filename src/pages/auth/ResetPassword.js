@@ -14,7 +14,7 @@ function ResetPassword(){
             return;
         }
         try {
-        const res=await fetch (`https://frds.onrender.com/api/users/reset-password/${token}`,{
+        const res=await fetch (`https://frds-blush.vercel.app/api/users/reset-password/${token}`,{
             method:"PUT",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({password})
