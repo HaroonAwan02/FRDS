@@ -77,7 +77,7 @@ app.use("/api/admin",adminRoutes);
 app.use("/reports",express.static("reports"));
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
-    cors: { origin: "https://frds-p1l6.vercel.app",
+    cors: { origin: "https://frds-blush.vercel.app",
         methods: ["GET","POST"],
     },
 });
