@@ -9,7 +9,6 @@ const sendEmail = async (options) =>{
         },
     });
     try {
-    await transporter.verify();
     console.log("smtp connected");
      const mailOptions={
         from :`FRDS <${process.env.EMAIL_USER}>`,
