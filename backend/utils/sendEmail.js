@@ -1,4 +1,3 @@
-import { info } from "autoprefixer";
 import nodemailer from "nodemailer";
 const sendEmail = async (options) =>{
     console.log("email_User",process.env.EMAIL_USER);
@@ -20,9 +19,9 @@ const sendEmail = async (options) =>{
         subject:options.subject,
         html:options.message,
      };
-     await transporter.sendMail(mailOptions);
-     console.log("email sent", info)
-     return info;
+     const info = await transporter.sendMail(mailOptions);
+     console.log("email sent seccessfully");
+     console.log(info);
     }catch(err) {
         console.log("smtp", err);
         throw err;
