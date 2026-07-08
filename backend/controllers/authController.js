@@ -38,6 +38,10 @@ export const forgotPassword=async(req,res)=>{
             message
         });
         console.log("email sent");
+        return res.status(200).json({
+            success: true,
+            message: "Reset email sent succesfully"
+        });
     }catch(emailerror){
      console.log("email error",emailerror.message);
      console.log("full error",emailerror);
