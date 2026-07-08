@@ -4,7 +4,7 @@ const sendEmail = async (options) =>{
     console.log("Email pass exisit",!!process.env.EMAIL_PASS);
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 587,
+        port: 465,
         secure:false,
         requireTLS: true,
         family:4,
@@ -24,12 +24,14 @@ const sendEmail = async (options) =>{
         subject:options.subject,
         html:options.message,
      };
-      console.log("beforee email sent");
+      console.log("before email sent");
+      console.log("mailOptions",mailOptions);
      const info = await transporter.sendMail(mailOptions);
      console.log("email sent seccessfully");
      console.log(info);
     }catch(err) {
-        console.log("smtp", err);
+        console.log("smtp error", err.message);
+        console.log("smpt full error",err);
         throw err;
     }
 };
