@@ -42,9 +42,9 @@ const sendEmail=async (options)=> {
     console.log("before email send");
     const { data,error}=await resend.emails.send({
         from : 'FRDS <onboarding@resend.dev>',
-        to: [options.email],
-        subject: options.subject,
-            html: options.message,
+        to: 'haroonlajpal123@gmail.com',
+        subject: subject,
+            html: htm + `<p><b> Note:</b> ye email ${to} ke liya tha</p>`,
         
     });
     if(error) {
