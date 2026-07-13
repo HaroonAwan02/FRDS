@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+/*import nodemailer from "nodemailer";
 const sendEmail = async (options) =>{
     console.log("email_User",process.env.EMAIL_USER);
     console.log("Email pass exisit",!!process.env.EMAIL_PASS);
@@ -33,5 +33,24 @@ const sendEmail = async (options) =>{
         console.log("smpt full error",err);
         throw err;
     }
+};
+export default sendEmail;
+*/
+import { Resend } from 'resend';
+const resend = new Resend(process.env.RESEND_API_KEY);
+const sendEmail=async (options)=> {
+    console.log("before email send");
+    const { data,error}=await resend.emails.send({
+        from : 'FRDS <onboarding@resend.dev>',
+        to: [options.email],
+        subject: options.subject,
+            html: options.message,
+        
+    });
+    if(error) {
+        console.log("smtp error", error);
+        throw error;
+    }
+    console.log("email sent succesfully",data);
 };
 export default sendEmail;
